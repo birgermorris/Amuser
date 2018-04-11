@@ -1,9 +1,11 @@
 <?php
+        include_once("db.class.php");
 
-    class User {
+class User {
         private $firstname;
         private $lastname;
         private $password;
+        private $user_id;
 
         
 
@@ -65,6 +67,43 @@
                 $this->password = $password;
 
                 return $this;
+        }
+
+        /**
+         * Get the value of user_id
+         */ 
+        public function getUser_id()
+        {
+                return $this->user_id;
+        }
+
+        /**
+         * Set the value of user_id
+         *
+         * @return  self
+         */ 
+        public function setUser_id($user_id)
+        {
+                $this->user_id = $user_id;
+
+                return $this;
+        }
+
+        public function getUserInfo() {
+                //DB CONNECTIE
+                $conn = Db::getInstance();
+
+                //QUERY WHERE USER = $_SESSION
+                $statement = $conn->prepare("SELECT * FROM users WHERE id = :user_id");
+                //$statement->bindParam(":user_id", $this->user_id);
+                $statement->execute();
+                $result = $statement->fetch();
+                return $result;
+        }
+
+        public function update() {
+                //DB connectie
+                //QUERY
         }
     }
 

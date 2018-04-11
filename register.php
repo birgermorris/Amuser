@@ -9,14 +9,14 @@
 <body>
 
 <form action="post">
-    <label for="firsname">firstname</label>
-    <input type="text">
+    <label for="firstname">firstname</label>
+    <input type="text" name="firstname" id="firstname">
 
     <label for="lastname">lastname</label>
-    <input type="text">
+    <input type="text" name="lastname" id="lastname">
 
-    <label for="password">password</label>
-    <input type="password">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
 
     <button>submit</button>
 </form>
