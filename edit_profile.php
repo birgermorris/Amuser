@@ -9,10 +9,6 @@ include_once("classes/User.class.php");
 $user = new User();
 $user->setUser_id($_SESSION["user_id"]);
 $profile = $user->getUserInfo();
-var_dump($profile);
-
-//GET USER DATA (UIT CLASS)
-$query = "SELECT * FROM users WHERE id = "
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -27,10 +23,10 @@ $query = "SELECT * FROM users WHERE id = "
 <h2>Edit profile</h2>
     <form action="post">
     <label for="firstname">firstname</label>
-    <input type="text" name="firstname" id="firstname">
+    <input type="text" name="firstname" id="firstname" value="<?php echo $profile['firstname']; ?>">
 
     <label for="lastname">lastname</label>
-    <input type="text" name="lastname" id="lastname">
+    <input type="text" name="lastname" id="lastname" value="<?php echo $profile['lastname'];?>"> 
 
     <label for="password">New password</label>
     <input type="password" name="password" id="password" placeholder="New password">

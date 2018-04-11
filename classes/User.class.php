@@ -1,5 +1,5 @@
 <?php
-        include_once("db.class.php");
+include_once("db.class.php");
 
 class User {
         private $firstname;
@@ -94,8 +94,8 @@ class User {
                 $conn = Db::getInstance();
 
                 //QUERY WHERE USER = $_SESSION
-                $statement = $conn->prepare("SELECT * FROM users WHERE id = :user_id");
-                //$statement->bindParam(":user_id", $this->user_id);
+                $statement = $conn->prepare("SELECT * FROM users WHERE id = :user_id LIMIT 1");
+                $statement->bindParam(":user_id", $this->user_id);
                 $statement->execute();
                 $result = $statement->fetch();
                 return $result;
