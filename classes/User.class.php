@@ -4,10 +4,11 @@ include_once("db.class.php");
 class User {
         private $firstname;
         private $lastname;
+        private $email;
+        private $bio;
+        private $image;
         private $password;
         private $user_id;
-
-        
 
         /**
          * Get the value of firstname
@@ -102,8 +103,87 @@ class User {
         }
 
         public function update() {
-                //DB connectie
-                //QUERY
+                //DB CONNECTIE
+                $conn = Db::getInstance();
+
+                //WACHTWOORD WIJZIGEN
+                
+
+                //QUERY UPDATE
+                $statement = $conn->prepare("UPDATE users SET firstname = :firstname,lastname=:lastname,email=:email,password=:password,bio=:bio,image=:image WHERE id = :user_id");
+                $statement->bindParam(":user_id", $this->user_id);
+                $statement->bindParam(":firstname", $this->firstname);
+                $statement->bindParam(":lastname", $this->lastname);
+                $statement->bindParam(":email", $this->email);
+                $statement->bindParam(":password", $this->password);
+                $statement->bindParam(":bio", $this->bio);
+                $statement->bindParam(":image", $this->image);
+                $statement->execute();
+                return $statement;
+        }
+
+        public function create() {
+                //CREATE USER
+        }
+
+        /**
+         * Get the value of email
+         */ 
+        public function getEmail()
+        {
+                return $this->email;
+        }
+
+        /**
+         * Set the value of email
+         *
+         * @return  self
+         */ 
+        public function setEmail($email)
+        {
+                $this->email = $email;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of bio
+         */ 
+        public function getBio()
+        {
+                return $this->bio;
+        }
+
+        /**
+         * Set the value of bio
+         *
+         * @return  self
+         */ 
+        public function setBio($bio)
+        {
+                $this->bio = $bio;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of image
+         */ 
+        public function getImage()
+        {
+                return $this->image;
+        }
+
+        /**
+         * Set the value of image
+         *
+         * @return  self
+         */ 
+        public function setImage($image)
+        {
+                $this->image = $image;
+
+                return $this;
         }
     }
 
