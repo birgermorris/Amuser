@@ -1,33 +1,38 @@
 <?php
-include_once("functions.php");
+include_once("classes/User.class.php");
 
-if( !empty($_POST)){
+session_start();
 
-    $username = $_POST["email"];
-    $password = $_POST["password"];
-
-    //controleren of een gebruiker kan inloggen (functie)
-    if (canilogin($username, $password)){
+if(!empty($_SESSION["loggedin"])){
+    
+    header("Location: index.php");
+}
+else{
+    if( !empty($_POST)){
         
-        session_start();
-        // Als login slaagt moet er een session aangemaakt worden van de ingelogde gebruiker
-        $_SESSION["username"] = $username;
-        $_SESSION["loggedin"] = true;
-    }
-    // if no -> moet er een $error getoont worden
-    // if yes -> naar pagina gebruiker (ingelogd)
+        $user = new User();
+        $user->setEmail($_POST["email"]);
+        $user->setPassword($_POST["password"]);
 
+        //controleren of een gebruiker kan inloggen (functie)
+        if ($user->login()){
+            
+            
+            // Als login slaagt moet er een session aangemaakt worden van de ingelogde gebruiker
+            $_SESSION["user_id"] = $user->getUser_id;
+            $_SESSION["loggedin"] = true; 
+            header("Location: index.php");
+        }
+        else{
+            $error = "Foutieve gegevens";
+        }
+        // if no -> moet er een $error getoont worden
+        // if yes -> naar pagina gebruiker (ingelogd)
+
+    }
 }
 
 
-
-//session_start();
-// Als login slaagt moet er een session aangemaakt worden van de ingelogde gebruiker
-
-//IF LOGGED IN = TRUE
-
-$_SESSION["user_id"] = 1;
-$_SESSION["loggedin"] = true;
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -38,6 +43,9 @@ $_SESSION["loggedin"] = true;
     <title>Amuser</title>
 </head>
 <body>
+
+<?php include_once("includes/header.inc.php"); ?>
+<?php include_once("includes/error.inc.php"); ?>
     <div class="netflixLogin">
         <form action="" method="post">
 

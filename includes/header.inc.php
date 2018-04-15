@@ -4,7 +4,8 @@
         <div class="search"></div>
         <div class="profile_header">
             <img src="" alt="">
-            <p>NAME</p>
+            <?php if(isset($_SESSION["loggedin"])): ?><p>NAME</p>
+            <?php endif; ?>
         </div>
     </div>
 </header>

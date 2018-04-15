@@ -122,6 +122,28 @@ class User {
                 return $statement;
         }
 
+        public function login(){
+    
+                $conn = Db::getInstance();
+
+                //QUERY UPDATE
+                $statement = $conn->prepare("select * from users where email = :email");
+                $statement->bindParam(":email", $this->email);
+                $statement->execute();
+
+                //$query = "select * form users where email = '".$conn->real_escape_string($username)."'";
+                $result = $statement->fetch();
+        
+                $this->user_id = $result["id"];
+                if( password_verify($this->password, $result['password'])){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            
+            }
+
         public function create() {
                 //CREATE USER
         }

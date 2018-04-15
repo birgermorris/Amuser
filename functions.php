@@ -1,6 +1,9 @@
 <?php
 // Kan ik inloggen?
-function login( $username, $password ){
+
+
+//Lisa 
+/*function login( $username, $password ){
     
     $query = "select * form users where email = '".$conn->real_escape_string($username)."'";
     $result = $conn->query($query);
@@ -17,5 +20,7 @@ function login( $username, $password ){
         return false;
     }
 
-}
+}*/
+
+
 ?>
