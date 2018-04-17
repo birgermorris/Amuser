@@ -10,6 +10,11 @@ class User {
         private $password;
         private $user_id;
 
+        //TEMP FILES FOR IMAGE UPLOAD
+        private $ImageName;
+        private $ImageSize;
+        private $ImageTmpName;
+
         /**
          * Get the value of firstname
          */ 
@@ -86,7 +91,6 @@ class User {
         public function setUser_id($user_id)
         {
                 $this->user_id = $user_id;
-
                 return $this;
         }
 
@@ -134,7 +138,8 @@ class User {
                 //$query = "select * form users where email = '".$conn->real_escape_string($username)."'";
                 $result = $statement->fetch();
         
-                $this->user_id = $result["id"];
+                $this->setUser_id($result["id"]);
+                
                 if( password_verify($this->password, $result['password'])){
                     return true;
                 }
@@ -204,6 +209,91 @@ class User {
         public function setImage($image)
         {
                 $this->image = $image;
+
+                return $this;
+        }
+
+        //save profile image into folder profile
+        public function SaveProfileImg() {
+                $file_name = $_SESSION['user_id'] . "-" . time() . "-" . $this->ImageName;
+                $file_size = $this->ImageSize;
+                $file_tmp = $this->ImageTmpName;
+                $tmp = explode('.', $file_name);
+                $file_ext = end($tmp);
+                $expensions = array("jpeg", "jpg", "png", "gif");
+        
+                if (in_array($file_ext, $expensions) === false) {
+                        throw new Exception("extension not allowed, please choose a JPEG or PNG or GIF file.");
+                }
+        
+                if ($file_size > 2097152) {
+                        throw new Exception('File size must be excately 2 MB');
+                }
+        
+                if (empty($errors) == true) {
+                        move_uploaded_file($file_tmp, "data/profile/" . $file_name);
+                        return "data/profile/" . $file_name;
+                } else {
+                        echo "Error";
+                }
+    }
+
+        /**
+         * Get the value of ImageName
+         */ 
+        public function getImageName()
+        {
+                return $this->ImageName;
+        }
+
+        /**
+         * Set the value of ImageName
+         *
+         * @return  self
+         */ 
+        public function setImageName($ImageName)
+        {
+                $this->ImageName = $ImageName;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of ImageSize
+         */ 
+        public function getImageSize()
+        {
+                return $this->ImageSize;
+        }
+
+        /**
+         * Set the value of ImageSize
+         *
+         * @return  self
+         */ 
+        public function setImageSize($ImageSize)
+        {
+                $this->ImageSize = $ImageSize;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of ImageTmpName
+         */ 
+        public function getImageTmpName()
+        {
+                return $this->ImageTmpName;
+        }
+
+        /**
+         * Set the value of ImageTmpName
+         *
+         * @return  self
+         */ 
+        public function setImageTmpName($ImageTmpName)
+        {
+                $this->ImageTmpName = $ImageTmpName;
 
                 return $this;
         }

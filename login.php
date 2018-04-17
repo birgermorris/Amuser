@@ -1,25 +1,24 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include_once("classes/User.class.php");
 
-session_start();
-
 if(!empty($_SESSION["loggedin"])){
-    
     header("Location: index.php");
 }
 else{
-    if( !empty($_POST)){
-        
+    if(!empty($_POST)){
         $user = new User();
         $user->setEmail($_POST["email"]);
         $user->setPassword($_POST["password"]);
 
         //controleren of een gebruiker kan inloggen (functie)
         if ($user->login()){
-            
-            
+            session_start();
             // Als login slaagt moet er een session aangemaakt worden van de ingelogde gebruiker
-            $_SESSION["user_id"] = $user->getUser_id;
+            $_SESSION["user_id"] = $user->getUser_id();
             $_SESSION["loggedin"] = true; 
             header("Location: index.php");
         }
@@ -31,8 +30,6 @@ else{
 
     }
 }
-
-
 
 ?><!DOCTYPE html>
 <html lang="en">
