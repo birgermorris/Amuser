@@ -70,9 +70,12 @@ class User {
          */ 
         public function setPassword($password)
         {
-                $this->password = $password;
-
-                return $this;
+                if (strlen($password) < 8){
+                        throw new Exception("Password must be at least 8 charachters long");
+                    }
+                    $hash = password_hash($password, PASSWORD_BCRYPT);
+                    $this->password = $hash;
+                    return $this;
         }
 
         /**
@@ -124,6 +127,22 @@ class User {
                 $statement->bindParam(":image", $this->image);
                 $statement->execute();
                 return $statement;
+        }
+
+
+        public function register(){
+                $conn = Db::getInstance();
+                //query opbouwen INSERT
+                $statement = $conn->prepare("insert into users (firstname, lastname, email, password) 
+                values(:firstname, :lastname, :email, :password)");
+                $statement->bindParam(':firstname', $this->email);
+                $statement->bindParam(':lastname', $this->email);
+                $statement->bindParam(':email', $this->email);
+                $statement->bindParam(':password', $this->password);
+                // query uitvoeren 
+                $result = $statement->execute();
+                // iets teruggeven
+                return $result;
         }
 
         public function login(){
