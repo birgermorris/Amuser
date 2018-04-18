@@ -9,6 +9,7 @@ class User {
         private $image;
         private $password;
         private $user_id;
+        private $password_login;
 
         //TEMP FILES FOR IMAGE UPLOAD
         private $ImageName;
@@ -153,13 +154,12 @@ class User {
                 $statement = $conn->prepare("select * from users where email = :email");
                 $statement->bindParam(":email", $this->email);
                 $statement->execute();
-
                 //$query = "select * form users where email = '".$conn->real_escape_string($username)."'";
                 $result = $statement->fetch();
         
                 $this->setUser_id($result["id"]);
                 
-                if( password_verify($this->password, $result['password'])){
+                if( password_verify($this->password_login, $result['password'])){
                     return true;
                 }
                 else {
@@ -313,6 +313,26 @@ class User {
         public function setImageTmpName($ImageTmpName)
         {
                 $this->ImageTmpName = $ImageTmpName;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of password_login
+         */ 
+        public function getPassword_login()
+        {
+                return $this->password_login;
+        }
+
+        /**
+         * Set the value of password_login
+         *
+         * @return  self
+         */ 
+        public function setPassword_login($password_login)
+        {
+                $this->password_login = $password_login;
 
                 return $this;
         }

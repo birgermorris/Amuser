@@ -12,7 +12,7 @@ else{
     if(!empty($_POST)){
         $user = new User();
         $user->setEmail($_POST["email"]);
-        $user->setPassword($_POST["password"]);
+        $user->setPassword_login($_POST["password"]);
 
         //controleren of een gebruiker kan inloggen (functie)
         if ($user->login()){

@@ -10,6 +10,9 @@
     <title>Document</title>
 </head>
 <body>
+<?php include_once("includes/header.inc.php"); ?>
+<?php include_once("includes/error.inc.php"); ?>
+
     <h1>Hello world</h1>
     <a href="upload.php">Upload file</a>
     <?php while($row = mysqli_fetch_array($result)): ?>
