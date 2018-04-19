@@ -34,7 +34,7 @@ include_once("classes/User.class.php");
     </div>
 <?php endif; ?>
 
-<form action="post">
+<form action="index.php" method="post">
     <label for="firstname">firstname</label>
     <input type="text" name="firstname" id="firstname">
     <br>
