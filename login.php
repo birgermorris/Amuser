@@ -40,8 +40,6 @@ else{
     <title>Amuser</title>
 </head>
 <body>
-
-<?php include_once("includes/header.inc.php"); ?>
 <?php include_once("includes/error.inc.php"); ?>
     <div class="netflixLogin">
         <form action="" method="post">
