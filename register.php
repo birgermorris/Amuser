@@ -35,7 +35,7 @@ if (!empty($_POST)){
         </div>
         <?php endif;?>
 
-<form action="index.php" method="post">
+<form action="" method="post">
     <label for="firstname">firstname</label>
     <input type="text" name="firstname" id="firstname">
     <br>

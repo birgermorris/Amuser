@@ -106,6 +106,27 @@ class User {
                 return $this;
         }
 
+
+        public function register(){
+                $conn = Db::getInstance();
+                //query opbouwen INSERT
+                $statement = $conn->prepare("INSERT INTO users (firstname, lastname, email, password) 
+                VALUES (:firstname, :lastname, :email, :password)");
+                $statement->bindParam(':firstname', $this->email);
+                $statement->bindParam(':lastname', $this->email);
+                $statement->bindParam(':email', $this->email);
+                $options = [
+                        "cost" => 11
+                    ];
+                $hash = password_hash($this->password, PASSWORD_DEFAULT, $options);
+                $statement->bindParam(':password', $hash);
+                // query uitvoeren 
+                $result = $statement->execute();
+                // iets teruggeven
+                return $result;
+        }
+
+        
         public function getUserInfo() {
                 //DB CONNECTIE
                 $conn = Db::getInstance();
@@ -138,25 +159,6 @@ class User {
                 return $statement;
         }
 
-
-        public function register(){
-                $conn = Db::getInstance();
-                //query opbouwen INSERT
-                $statement = $conn->prepare("INSERT INTO users (firstname, lastname, email, password) 
-                VALUES (:firstname, :lastname, :email, :password)");
-                $statement->bindParam(':firstname', $this->email);
-                $statement->bindParam(':lastname', $this->email);
-                $statement->bindParam(':email', $this->email);
-                $options = [
-                        "cost" => 11
-                    ];
-                $hash = password_hash($this->password, PASSWORD_DEFAULT, $options);
-                $statement->bindParam(':password', $hash);
-                // query uitvoeren 
-                $result = $statement->execute();
-                // iets teruggeven
-                return $result;
-        }
 
         public function login(){
     
