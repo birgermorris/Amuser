@@ -134,8 +134,8 @@ class User {
         public function register(){
                 $conn = Db::getInstance();
                 //query opbouwen INSERT
-                $statement = $conn->prepare("insert into users (firstname, lastname, email, password) 
-                values(:firstname, :lastname, :email, :password)");
+                $statement = $conn->prepare("INSERT INTO users (firstname, lastname, email, password) 
+                VALUES (:firstname, :lastname, :email, :password)");
                 $statement->bindParam(':firstname', $this->email);
                 $statement->bindParam(':lastname', $this->email);
                 $statement->bindParam(':email', $this->email);

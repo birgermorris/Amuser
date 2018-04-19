@@ -7,9 +7,6 @@ include_once("classes/User.class.php");
         $user->setFirstname($_POST['firstname']);
         $user->setLastName($_POST['lastname']);
         $user->setPassword($_POST['password']);
-        if($user->register()){
-            $user->login();
-        }
     }
 
 ?><!DOCTYPE html>
