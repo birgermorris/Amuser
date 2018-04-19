@@ -1,12 +1,18 @@
 <?php 
 include_once("includes/header.inc.php");
 include_once("classes/User.class.php");
-    if (!empty($_POST)){
+    
+if (!empty($_POST)){
+        try {
         $user = new User();
         $user->setEmail($_POST['email']);
         $user->setFirstname($_POST['firstname']);
         $user->setLastName($_POST['lastname']);
         $user->setPassword($_POST['password']);
+        }
+        catch (Exception $e) {
+            $message = $e->getMessage();
+        }
     }
 
 ?><!DOCTYPE html>
@@ -23,13 +29,11 @@ include_once("classes/User.class.php");
 <div class="register">
     <h2>Sign up for an account</h2>
 
-<?php if(isset($error) ) : ?>
-    <div class="form_error">
-        <p>
-            Ooooops, something went wrong.
-        </p>
-    </div>
-<?php endif; ?>
+<?php if ( isset($message)): ?>
+        <div class="error">
+            <label for="error"> <?php echo $message; ?>  </label>
+        </div>
+        <?php endif;?>
 
 <form action="index.php" method="post">
     <label for="firstname">firstname</label>
@@ -44,7 +48,7 @@ include_once("classes/User.class.php");
     <label for="password">Password</label>
     <input type="password" name="password" id="password">
     <br>
-    <button>submit</button>
+    <button type="submit">submit</button>
 </form>
 </div>
 

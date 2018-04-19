@@ -31,9 +31,13 @@ class User {
          */ 
         public function setFirstname($firstname)
         {
+                if (empty($firstname)) {
+                        throw new Exception("Firstname cannot be empty");
+                        }
+                else {
                 $this->firstname = $firstname;
-
-                return $this;
+                return $this; 
+                }       
         }
 
         /**
@@ -51,8 +55,12 @@ class User {
          */ 
         public function setLastname($lastname)
         {
+                if (empty($lastname)) {
+                throw new Exception("Lastname cannot be empty");
+                }
+                else {
                 $this->lastname = $lastname;
-
+                }
                 return $this;
         }
 
@@ -139,7 +147,11 @@ class User {
                 $statement->bindParam(':firstname', $this->email);
                 $statement->bindParam(':lastname', $this->email);
                 $statement->bindParam(':email', $this->email);
-                $statement->bindParam(':password', $this->password);
+                $options = [
+                        "cost" => 11
+                    ];
+                $hash = password_hash($this->password, PASSWORD_DEFAULT, $options);
+                $statement->bindParam(':password', $hash);
                 // query uitvoeren 
                 $result = $statement->execute();
                 // iets teruggeven
@@ -187,9 +199,14 @@ class User {
          */ 
         public function setEmail($email)
         {
+                if (empty($email)) {
+                        throw new Exception("Email cannot be empty");
+                }
+                else {
                 $this->email = $email;
 
                 return $this;
+                }
         }
 
         /**
@@ -336,6 +353,7 @@ class User {
 
                 return $this;
         }
+
     }
 
 ?>
