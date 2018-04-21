@@ -1,10 +1,10 @@
 <?php 
 include_once("settings.inc.php");
-$server = $settings['server'];
+$server = $settings['localhost'];
 $user = $settings['user'];
-$pw = $settings['pw'];
-$db = $settings['db'];
-$port = $settings['port'];
+$pw = $settings['root'];
+$db = $settings['amuser'];
+$port = $settings['8888'];
 $conn = new mysqli($server, $user, $pw, $db,$port);
 
 /*class Db {

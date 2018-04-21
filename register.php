@@ -1,7 +1,7 @@
 <?php 
 include_once("includes/header.inc.php");
 include_once("classes/User.class.php");
-    
+
 if (!empty($_POST)){
         try {
         $user = new User();
@@ -9,6 +9,7 @@ if (!empty($_POST)){
         $user->setFirstname($_POST['firstname']);
         $user->setLastName($_POST['lastname']);
         $user->setPassword($_POST['password']);
+        $user->register();
         }
         catch (Exception $e) {
             $message = $e->getMessage();
