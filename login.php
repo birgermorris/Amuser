@@ -13,7 +13,7 @@ else{
         $user = new User();
         $user->setEmail($_POST["email"]);
         $user->setPassword_login($_POST["password"]);
-
+        
         //controleren of een gebruiker kan inloggen (functie)
         if ($user->login()){
             session_start();
@@ -23,7 +23,8 @@ else{
             header("Location: index.php");
         }
         else{
-            $error = "Foutieve gegevens";
+            //$error = "Foutieve gegevens";
+            $error = true;
         }
         // if no -> moet er een $error getoont worden
         // if yes -> naar pagina gebruiker (ingelogd)
@@ -37,26 +38,31 @@ else{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style_login.css">
     <title>Amuser</title>
 </head>
 <body>
 <?php include_once("includes/error.inc.php"); ?>
+
+    <section class="login">
+        <img src="images/logo.png" alt="logo Amuser">
     <div class="netflixLogin">
         <form action="" method="post">
+            <?php if (isset($error)): ?>
+				<div class="login_error">
+				    <p>
+						Sorry, we can't log you in with that email address and password. Can you try again?
+					</p>
+				</div>
+            <?php endif; ?>
 
-				<div class="form__field">
-					<label for="email">Email</label>
-					<input type="text" id="email" name="email">
-				</div>
-				<div class="form__field">
-					<label for="password">Password</label>
-					<input type="password" id="password" name="password">
-				</div>
+            <input type="text" id="email" name="email" placeholder="Email">
+            <input type="text" id="password" name="email" placeholder="Password">
 
-				<div class="form__field">
-					<input type="submit" value="Sign in" class="btn btn--primary">
-				</div>
-	    </form>
+            <input type="submit" value="Sign in">
+        </form>
     </div>
+    </section>
+
 </body>
 </html>

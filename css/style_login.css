@@ -1,0 +1,65 @@
+body
+{
+  margin: 0;
+  background-image: url(../images/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+img{
+    width: 220px;
+    text-align: center;
+   padding-top: 105px;
+}
+
+.login{
+text-align: center;
+}
+
+.login form{
+    background-color: #2A4162; /*#27234E*/
+    padding: 4em 1em 4em 1em;
+    margin: 5px;
+    grid-column: form;
+    grid-row: form;
+}
+
+.login_error p{
+    background-color: #888BA2;
+    color: white;
+    width: 84%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5%;
+    border: none;
+    font-size: 1em;
+  }
+
+.login form input[type=text]{
+    width: 84%;
+    margin: 8px;
+    padding: 5%;
+    border: none;
+    font-size: 1.4em;
+    background-color: #fff;
+}
+
+.login form input[value="Sign in"]{
+    width: 94%;
+    margin: 10px;
+    padding: 5%;
+    background-color: #DA4741;
+    color: #fff;
+    border: none;
+    font-size: 1.4em;
+    text-transform: uppercase;
+}
+
+.netflixLogin {
+  height: 55vh; /* 100vh */
+  display: grid;
+  grid-template-columns: 1fr [form] minmax(240px, 500px) 1fr; /* 240, 450*/
+  grid-template-rows: 1fr [form] 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+}
