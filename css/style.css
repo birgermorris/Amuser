@@ -2,6 +2,7 @@
         height: 100%;
         width: 100%;
         background-image: url(../images/bakcground.jpg);
+        z-index: 0;
     }
     
     .register {
@@ -41,7 +42,7 @@
         color: whitesmoke;
         width: 100%;
         height: 50px;
-        display:flex;
+        display: flex;
     }
     
     .logo {
@@ -51,19 +52,19 @@
         background-repeat: no-repeat;
         margin: 2px;
     }
-
+    
     input#search {
         background: #fafafa;
-    border-radius: 15px;
-    border: solid 1px #edeeee;
-    font-size: 14px;
-    height: 20px;
-    outline: none;
-    padding: 3px 10px 3px 10px;
-    width: 178px;
-    z-index: 2;
-    text-align:center;
-    display:inline;
-    float:left;
-    margin-left:80px;
+        border-radius: 15px;
+        border: solid 1px #edeeee;
+        font-size: 14px;
+        height: 20px;
+        outline: none;
+        padding: 3px 10px 3px 10px;
+        width: 178px;
+        z-index: 2;
+        text-align: center;
+        display: inline;
+        float: left;
+        margin-left: 80px;
     }

@@ -26,7 +26,6 @@ if (!empty($_POST)){
     <title>Register</title>
 </head>
 <body>
-
 <div class="register">
     <h2>Sign up for an account</h2>
 
