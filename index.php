@@ -1,7 +1,4 @@
-<?php 
-    $db = mysqli_connect("localhost", "root", "root", "amuser");
-    $result = mysqli_query($db, "SELECT * FROM posts");
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,13 +12,11 @@
 <?php include_once("includes/error.inc.php"); ?>
 
     <h1>Hello world</h1>
-    <a href="upload.php">Upload file</a>
-    <?php while($row = mysqli_fetch_array($result)): ?>
-        <div class="img_div">
-            <img src="data/post/<?php echo $row['image'] ?>">
-            <p><?php echo $row['image_text'] ?></p>
-        </div>
-    <?php endwhile; ?>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        Select image to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit">
+    </form>
 
 <button class="btnLoadMore" type="load more" href="#">Load more</button>
 
