@@ -1,11 +1,13 @@
 <?php
+
+spl_autoload_register(function($inc){
+    include_once("includes/". $inc . ".inc.php");
+});
 class db
 {
     private static $conn;
     public static function getInstance(){
-        spl_autoload_register(function($inc){
-            include_once("includes/". $inc . ".inc.php");
-        });
+
         if( is_null( self::$conn ) ){
             //self::$conn = new PDO("'mysql:host=".$settings['server']."; dbname=".$settings['db'].", ".$settings['user'].",".$settings['pw'].";");
             //self::$conn= new PDO("'mysql:host=".$settings["server"]."; dbname=".$settings["db"]."','".$settings["user"]."','".$settings["pw"]."'");

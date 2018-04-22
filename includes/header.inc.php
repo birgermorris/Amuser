@@ -1,18 +1,5 @@
 <?php
-session_start();
-spl_autoload_register(function($class){
-    include_once("classes/". $class . ".class.php");
-});
-if (empty($_SESSION["loggedin"])) {
-    $_SESSION["loggedin"] = false;
-}
 
-if ($_SESSION["loggedin"] == false     
-&& basename($_SERVER["SCRIPT_NAME"]) != "login.php"
-&& basename($_SERVER["SCRIPT_NAME"]) != "register.php") {
-    header("Location: login.php");
-    die();
-}
 
 ?><!DOCTYPE html>
 <html lang="en">
