@@ -5,6 +5,7 @@ if(!empty($_POST)){
         $post = new Posts();
         $post->tmp = $_FILES["fileToUpload"];
         //$post->PhotoCheck();
+        $post->setImage_text($_POST["image_text"]);
         $post->PhotoUpload();
     } catch (Exception $e) {
         $error = $e->getMessage;
@@ -24,7 +25,7 @@ if(!empty($_POST)){
         Select image to upload:
         <input type="file" name="fileToUpload" id="fileToUpload">
         <div>
-            <textarea id="fileDescription" cols="40" rows="4" name="fileDescription" placeholder="Say something about this image..."></textarea>
+            <textarea id="image_text" cols="40" rows="4" name="image_text" placeholder="Say something about this image..."></textarea>
   	    </div>
         <input type="submit" value="Upload Image" name="submit">
     </form>

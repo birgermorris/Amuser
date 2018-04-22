@@ -1,53 +1,68 @@
 <?php 
+include_once("db.class.php");
     Class Posts {
         public $src = "data/post/";
         public $tmp;
-        public $filename;
+        public $image;
+        public $image_text;
         public $type;
         public $uploadfile;
         public $target_file;
         public $imageFileType;
 
-        public function PhotoCheck(){
-            // Check if image file is a actual image or fake image
-            $check = getimagesize($this->tmp["tmp_name"]);
-            if($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
-                $uploadOk = 1;
-            } else {
-                echo "File is not an image.";
-                $uploadOk = 0;
-            }
-            // Check if file already exists
-            if (file_exists($target_file)) {
-                echo "Sorry, file already exists.";
-                $uploadOk = 0;
-            }
-            // Check file size
-            if ($this->tmp["size"] > 500000) {
-                echo "Sorry, your file is too large.";
-                $uploadOk = 0;
-            }
-            
-            $filename = $_FILES['image']['name'];
-            $tmp = explode('.',$filename);
-            $imageFileType = end($tmp);
+        /**
+         * Get the value of image
+         */ 
+        public function getImage()
+        {
+                return $this->image;
+        }
 
-            // Allow certain file formats
-            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-            && $imageFileType != "gif" ) {
-                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-                $uploadOk = 0;
-            }
+        /**
+         * Set the value of image
+         *
+         * @return  self
+         */ 
+        public function setImage($image)
+        {
+                $this->image = $image;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of image_text
+         */ 
+        public function getImage_text()
+        {
+                return $this->image_text;
+        }
+
+        /**
+         * Set the value of image_text
+         *
+         * @return  self
+         */ 
+        public function setImage_text($image_text)
+        {
+                $this->image_text = $image_text;
+
+                return $this;
         }
         public function PhotoUpload(){
+            $conn = Db::getInstance();
+
             $this->target_file  = $this->src. basename($this->tmp["name"]);
             if(move_uploaded_file($this->tmp["tmp_name"], $this->target_file)){
-                echo "The file ".basename( $this->tmp["name"])." has been uploaded.";
+                $query = "insert into posts (image, image_text) values (:image, :image_text)";
+                $statement = $conn->prepare($query);
+                $statement->bindValue(':image', $this->target_file);
+                $statement->bindValue(':image_text', $this->image_text);
+                $res = $statement->execute();
+                return $res;
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
         }
-        
     }
 ?>
