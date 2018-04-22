@@ -71,6 +71,7 @@ $profile = $user->getUserInfo();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -78,9 +79,9 @@ $profile = $user->getUserInfo();
 <?php include_once("includes/header.inc.php"); ?>
 <?php include_once("includes/error.inc.php"); ?>
 
-<h2>Edit profile</h2>
-    <form method="post" action="" enctype="multipart/form-data">
 
+    <form method="post" action="" enctype="multipart/form-data" class="edit_profile">
+    <h2>Edit profile</h2>
     <label for="profileImg">Mijn profielfoto</label>
     <img src="<?php echo $profile['image'] ?>" alt="">
     <input type="file" name="profileImg" id="profileImg" accept="image/gif, image/jpeg, image/png, image/jpg">
@@ -100,8 +101,8 @@ $profile = $user->getUserInfo();
     <input type="submit" name="edit" value="Edit">
 </form>
 
-<form method="post" action="">
-    <p>Wachtwoord aanpassen</p>
+<form method="post" action="" class="edit_profile">
+    <h2>Wachtwoord aanpassen</h2>
     <label for="password">New password</label>
     <input type="password" name="password" id="password" placeholder="New password">
 

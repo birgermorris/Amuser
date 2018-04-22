@@ -14,7 +14,7 @@
 <header>
         <nav class="container">
         <a class="logo" href="index.php"></a>
-        <div class="search"><form action="search.php" method="get"><input type="text" name="search" id="search" placeholder="Search" ><input type="submit" value="zoeken"></form></div>
+        <div class="search"><form action="search.php" method="get"><input type="text" name="search" id="search" placeholder="Search" ><input type="submit" class="searchbutton" value="zoeken"></form></div>
         <div class="profile_header">
             <img src="" alt="">
         </div>
