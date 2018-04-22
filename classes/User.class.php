@@ -10,6 +10,7 @@ class User {
         private $password;
         private $user_id;
         private $password_login;
+        private $password_update;
 
         //TEMP FILES FOR IMAGE UPLOAD
         private $ImageName;
@@ -82,7 +83,7 @@ class User {
                 if (strlen($password) < 8){
                         throw new Exception("Password must be at least 8 charachters long");
                     }
-                    $hash = password_hash($password, PASSWORD_BCRYPT);
+                    $hash = password_hash($password, PASSWORD_DEFAULT);
                     $this->password = $hash;
                     return $this;
         }
@@ -113,13 +114,13 @@ class User {
                 $statement = $conn->prepare("INSERT INTO users (firstname, lastname, email, password) 
                 VALUES (:firstname, :lastname, :email, :password)");
                 $statement->bindParam(':firstname', $this->email);
-                $statement->bindParam(':lastname', $this->email);
+                $statement->bindParam(':lastname', $this->lastname);
                 $statement->bindParam(':email', $this->email);
-                $options = [
+                /*$options = [
                         "cost" => 11
                     ];
-                $hash = password_hash($this->password, PASSWORD_DEFAULT, $options);
-                $statement->bindParam(':password', $hash);
+                $hash = password_hash($this->password, PASSWORD_DEFAULT, $options);*/
+                $statement->bindParam(':password', $this->password);
                 // query uitvoeren 
                 $result = $statement->execute();
                 // iets teruggeven
@@ -147,16 +148,24 @@ class User {
                 
 
                 //QUERY UPDATE
-                $statement = $conn->prepare("UPDATE users SET firstname = :firstname,lastname=:lastname,email=:email,password=:password,bio=:bio,image=:image WHERE id = :user_id");
+                $statement = $conn->prepare("UPDATE users SET firstname = :firstname,lastname=:lastname,email=:email,bio=:bio,image=:image WHERE id = :user_id");
                 $statement->bindParam(":user_id", $this->user_id);
                 $statement->bindParam(":firstname", $this->firstname);
                 $statement->bindParam(":lastname", $this->lastname);
                 $statement->bindParam(":email", $this->email);
-                $statement->bindParam(":password", $this->password);
                 $statement->bindParam(":bio", $this->bio);
                 $statement->bindParam(":image", $this->image);
                 $statement->execute();
                 return $statement;
+        }
+
+        public function updatePassword() {
+                $conn = Db::getInstance();
+                $statement = $conn->prepare("UPDATE users SET password = :password WHERE id = :user_id");
+                $statement->bindParam(":user_id", $this->user_id);
+                $statement->bindParam(":password", $this->password);
+                $statement->execute();
+                return $statement;    
         }
 
 
@@ -181,6 +190,23 @@ class User {
                 }
             
             }
+
+        //check if email exists --> for update
+        public function emailExists($email)
+        {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("select * from users where email = :email");
+        $statement->bindParam(":email", $email);
+        $statement->execute();
+        $count = $statement->rowCount();
+        if ($count > 0) {
+           return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 
         public function create() {
                 //CREATE USER
@@ -356,6 +382,26 @@ class User {
                 return $this;
         }
 
+
+        /**
+         * Get the value of password_update
+         */ 
+        public function getPassword_update()
+        {
+                return $this->password_update;
+        }
+
+        /**
+         * Set the value of password_update
+         *
+         * @return  self
+         */ 
+        public function setPassword_update($password_update)
+        {
+                $this->password_update = $password_update;
+
+                return $this;
+        }
     }
 
 ?>

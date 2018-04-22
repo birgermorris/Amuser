@@ -35,7 +35,7 @@ text-align: center;
     font-size: 1em;
   }
 
-.login form input[type=text]{
+.login form input[type=text], .login form input[type=password] {
     width: 84%;
     margin: 8px;
     padding: 5%;

@@ -57,7 +57,7 @@ else{
             <?php endif; ?>
 
             <input type="text" id="email" name="email" placeholder="Email">
-            <input type="text" id="password" name="email" placeholder="Password">
+            <input type="password" id="password" name="password" placeholder="Password">
 
             <input type="submit" value="Sign in">
         </form>
