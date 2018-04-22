@@ -1,5 +1,7 @@
 <?php 
-include_once("settings.inc.php");
+        spl_autoload_register(function($set){
+            include_once("settings/". $set . ".php");
+        });
 $server = $settings['localhost'];
 $user = $settings['user'];
 $pw = $settings['root'];
