@@ -23,6 +23,9 @@ if(!empty($_POST)){
 		<form action="upload.php" method="post" enctype="multipart/form-data">
         Select image to upload:
         <input type="file" name="fileToUpload" id="fileToUpload">
+        <div>
+            <textarea id="fileDescription" cols="40" rows="4" name="fileDescription" placeholder="Say something about this image..."></textarea>
+  	    </div>
         <input type="submit" value="Upload Image" name="submit">
     </form>
 </body>
