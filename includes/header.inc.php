@@ -1,4 +1,20 @@
-<!DOCTYPE html>
+<?php
+session_start();
+spl_autoload_register(function($class){
+    include_once("classes/". $class . ".class.php");
+});
+if (empty($_SESSION["loggedin"])) {
+    $_SESSION["loggedin"] = false;
+}
+
+if ($_SESSION["loggedin"] == false     
+&& basename($_SERVER["SCRIPT_NAME"]) != "login.php"
+&& basename($_SERVER["SCRIPT_NAME"]) != "register.php") {
+    header("Location: login.php");
+    die();
+}
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,8 +30,6 @@
         <div class="search"><form action="search.php" method="get"><input type="text" name="search" id="search" placeholder="Search" ><input type="submit" value="zoeken"></form></div>
         <div class="profile_header">
             <img src="" alt="">
-            <?php if(isset($_SESSION["loggedin"])): ?><p>NAME</p>
-            <?php endif; ?>
         </div>
         </nav>
 </header>

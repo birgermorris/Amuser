@@ -1,5 +1,4 @@
 <?php 
-include_once("includes/header.inc.php");
 include_once("classes/User.class.php");
 
 if (!empty($_POST)){
@@ -15,7 +14,7 @@ if (!empty($_POST)){
             $message = $e->getMessage();
         }
     }
-
+ include_once("includes/header.inc.php");
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
