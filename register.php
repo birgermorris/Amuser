@@ -8,7 +8,11 @@ if (!empty($_POST)){
         $user->setFirstname($_POST['firstname']);
         $user->setLastName($_POST['lastname']);
         $user->setPassword($_POST['password']);
-        $user->register();
+        if($user->register()){
+            session_start();
+            $_SESSION['email'] = $user->getEmail();
+            header('location: index.php');
+        }
         }
         catch (Exception $e) {
             $message = $e->getMessage();
