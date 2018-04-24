@@ -4,15 +4,17 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
-    h2{
+    
+    h2 {
         color: #DA4741;
         font-size: 35px;
     }
+    
     .register {
         padding: 2%;
         margin-left: 10%;
+        margin-top: 10%;
         justify-content: space-around;
-        background: whitesmoke;
         width: 80%;
         height: 80%;
         color: grey;
@@ -25,10 +27,10 @@
         grid-column: form;
         grid-row: form;
         text-align: center;
-        
     }
     
-    form input, form textarea {
+    form input,
+    form textarea {
         width: 84%;
         margin: 8px;
         padding: 5%;
@@ -37,7 +39,7 @@
         background-color: #fff;
         resize: none;
     }
-
+    
     button {
         color: black;
         width: 100px;
@@ -77,17 +79,19 @@
         float: left;
         margin-left: 80px;
     }
-
+    
     .edit_profile label {
-        font-size:20px;
-        color:#fff;
+        font-size: 20px;
+        color: #fff;
     }
+    
     .edit_profile #profileImg {
         padding: 0px;
         background-color: transparent;
         color: #DA4741;
     }
-    input[type="submit"]{
+    
+    input[type="submit"] {
         width: 94%;
         margin: 10px;
         padding: 5%;
@@ -97,24 +101,24 @@
         font-size: 1.4em;
         text-transform: uppercase;
     }
-
-    .edit_profile input {
-        
-    }
+    
+    .edit_profile input {}
+    
     .edit_profile img {
         width: 100px;
         height: 100px;
         border-radius: 50%;
     }
-    body
-{
-  margin: 0;
-  background-image: url(../images/background.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-family: arial;
-}
-input.searchbutton{
-    padding: 10px;
-    width: auto;
-        }
+    
+    body {
+        margin: 0;
+        background-image: url(../images/background.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: arial;
+    }
+    
+    input.searchbutton {
+        padding: 10px;
+        width: auto;
+    }
