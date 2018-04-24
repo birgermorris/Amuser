@@ -122,3 +122,24 @@
         padding: 10px;
         width: auto;
     }
+    
+    .posts {
+        display: block;
+        width: 80%;
+        height: 80%;
+        margin-left: 10%;
+        margin-bottom: 10%;
+    }
+    
+    .btnLoadMore {
+        display: block;
+        width: 80%;
+        height: 30px;
+        margin-left: 10%;
+        background-position: center;
+    }
+    
+    .btnLoadMore:hover {
+        background-color: #2A4162;
+        color: whitesmoke;
+    }
