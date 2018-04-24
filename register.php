@@ -52,7 +52,7 @@ if (!empty($_POST)){
     <label for="password">Password</label>
     <input type="password" name="password" id="password">
     <br>
-    <button type="submit">submit</button>
+    <button type="submit" class="btnSubmit">submit</button>
 </form>
 </div>
 

@@ -40,13 +40,18 @@
         resize: none;
     }
     
-    button {
+    .btnSubmit {
         color: black;
         width: 100px;
         height: 50px;
         background-color: aliceblue;
         margin: 10px;
         border-radius: -5px;
+    }
+    
+    .btnSubmit:hover {
+        background-color: #DA4741;
+        color: whitesmoke;
     }
     
     nav {
