@@ -11,8 +11,8 @@
 <?php include_once("includes/header.inc.php"); ?>
 <?php include_once("includes/error.inc.php"); ?>
 <div class="posts">
-    <h1>Hello world</h1>
     <a href="upload.php">Upload een post</a>
+    <a href="edit_profile.php">Pas gegevens aan</a>
 </div>
 <button class="btnLoadMore" type="load more" href="#">Load more</button>
 
