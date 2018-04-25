@@ -52,7 +52,7 @@ include_once("db.class.php");
         public function PhotoUpload(){
             $conn = Db::getInstance();
 
-            $this->target_file  = $this->src. basename($this->tmp["name"]);
+            $this->target_file = $this->src. str_replace(" ", "",basename($this->tmp["name"]));
             if(move_uploaded_file($this->tmp["tmp_name"], $this->target_file)){
                 $query = "insert into posts (image, image_text) values (:image, :image_text)";
                 $statement = $conn->prepare($query);
@@ -63,6 +63,13 @@ include_once("db.class.php");
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
+        }
+        public static function getAll() {
+            $conn = Db::getInstance();
+            $statement = $conn->prepare('select * from posts');
+            $statement->execute();
+            $result = $statement->fetchAll( PDO::FETCH_ASSOC );
+            return $result;
         }
     }
 ?>

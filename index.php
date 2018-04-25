@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+    include_once("classes/posts.class.php");
+    $collection = Posts::getAll();
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,8 +13,16 @@
 <body>
 <?php include_once("includes/header.inc.php"); ?>
 <?php include_once("includes/error.inc.php"); ?>
-<div class="posts">
-    
+<div class="grid-container">
+    <?php foreach($collection as $c): ?>
+    <div class="grid-item">
+        <div class="thumbnail" style="width:400px;height:400px;background-image:url(<?php echo $c['image']; ?>);background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
+        </div>
+        <div class="description">    
+            <p><?php echo $c['image_text']; ?></p>
+        </div>
+    </div>    
+    <?php endforeach; ?>
 </div>
 <button class="btnLoadMore" type="load more" href="#">Load more</button>
 
