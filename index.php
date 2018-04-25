@@ -1,5 +1,6 @@
 <?php
     include_once("classes/posts.class.php");
+    include_once("includes/functions.inc.php");
     $collection = Posts::getAll();
 ?><!DOCTYPE html>
 <html lang="en">
@@ -16,6 +17,10 @@
 <div class="grid-container">
     <?php foreach($collection as $c): ?>
     <div class="grid-item">
+        <div class="">
+            <div class="username">USERNAME</div>
+            <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
+        </div>
         <div class="thumbnail" style="width:400px;height:400px;background-image:url(<?php echo $c['image']; ?>);background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
         </div>
         <div class="description">    

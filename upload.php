@@ -7,6 +7,7 @@ if(!empty($_POST)){
         //$post->PhotoCheck();
         $post->setImage_text($_POST["image_text"]);
         $post->PhotoUpload();
+        header("Location: index.php");
     } catch (Exception $e) {
         $error = $e->getMessage;
     }

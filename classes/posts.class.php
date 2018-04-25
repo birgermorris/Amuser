@@ -52,12 +52,13 @@ include_once("db.class.php");
         public function PhotoUpload(){
             $conn = Db::getInstance();
 
-            $this->target_file = $this->src. str_replace(" ", "",basename($this->tmp["name"]));
+            $this->target_file = $this->src . preg_replace("![^a-z0-9]+!i", "_",basename($this->tmp["name"]));
             if(move_uploaded_file($this->tmp["tmp_name"], $this->target_file)){
-                $query = "insert into posts (image, image_text) values (:image, :image_text)";
+                $query = "insert into posts (image, image_text, upload_time) values (:image, :image_text, :upload_time) ";
                 $statement = $conn->prepare($query);
                 $statement->bindValue(':image', $this->target_file);
                 $statement->bindValue(':image_text', $this->image_text);
+                $statement->bindValue(':upload_time', date("Y-m-d H:i:s"));
                 $res = $statement->execute();
                 return $res;
             } else {
@@ -66,7 +67,7 @@ include_once("db.class.php");
         }
         public static function getAll() {
             $conn = Db::getInstance();
-            $statement = $conn->prepare('select * from posts');
+            $statement = $conn->prepare('select * from posts ORDER BY upload_time DESC');
             $statement->execute();
             $result = $statement->fetchAll( PDO::FETCH_ASSOC );
             return $result;

@@ -1,5 +1,6 @@
 <?php 
     include_once("classes/search.class.php");
+    include_once("includes/functions.inc.php");
 
     session_start();
 
@@ -15,6 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
     <title>Zoeken: <?php echo $_GET["search"]; ?></title>
 </head>
 <body>
@@ -24,10 +26,17 @@
     <h1>Zoeken: <?php echo $_GET["search"]; ?></h1>
     
     <?php foreach ($results as $result): ?>
-        <div class="img_div">
-            <img src="data/post/<?php echo $result['image'] ?>">
+    <div class="grid-item">
+        <div class="">
+            <div class="username">USERNAME</div>
+            <div class="timeAgo"><?php echo timing($result['upload_time']); ?></div>
+        </div>
+        <div class="thumbnail" style="width:400px;height:400px;background-image:url(<?php echo $result['image']; ?>);background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
+        </div>
+        <div class="description">    
             <p><?php echo $result['image_text']; ?></p>
         </div>
+    </div>    
     <?php endforeach; ?>
 </body>
 </html>
