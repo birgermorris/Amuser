@@ -1,7 +1,19 @@
 <?php
+    include_once("classes/User.class.php");
     include_once("classes/posts.class.php");
+    include_once("classes/reaction.class.php");
     include_once("includes/functions.inc.php");
+    session_start();
     $collection = Posts::getAll();
+
+    if(isset($_POST['reaction']) && !empty($_POST['reaction']) && !empty($_POST["post_id"])){
+        $reaction = new Reaction();
+        $reaction->setPost_id($_POST["post_id"]);
+        $reaction->setUser_id($_SESSION['user_id']);
+        $reaction->setReaction_text($_POST["reaction"]);
+        $reaction->create();
+    }
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +37,30 @@
         </div>
         <div class="description">    
             <p><?php echo $c['image_text']; ?></p>
+        </div>
+        <div class="reactions">
+        <?php
+            $reactions = new Reaction();
+            $postReactions = $reactions->getReactionsOfPost($c["id"]);
+        ?>
+        <h4>Reacties:</h4>
+        <?php foreach($postReactions as $postReaction): ?>
+        <?php
+            $reactionUser = new User();
+            $reactionUser->setUser_id($postReaction["user_id"]);
+            $reactionUserData = $reactionUser->getUserInfo();
+        ?>
+        <p>
+        <?php echo $reactionUserData["firstname"] . " " . $reactionUserData["lastname"] . ": " . $postReaction["reaction_text"]; ?>
+        </p>
+        <?php endforeach; ?>
+        </div>
+        <div class="react">
+            <form action="" method="post" name="react">
+            <input type="text" hidden name="post_id" id="post_id" value="<?php echo $c["id"]; ?>">
+            <input type="text" name="reaction" id="reaction">
+            <input type="submit">
+            </form>
         </div>
     </div>    
     <?php endforeach; ?>
