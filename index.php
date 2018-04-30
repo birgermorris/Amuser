@@ -28,9 +28,14 @@
 <?php include_once("includes/error.inc.php"); ?>
 <div class="grid-container">
     <?php foreach($collection as $c): ?>
+    <?php 
+        $user = new User();
+        $user->setUser_id($c['user_id']);
+        $thisUser = $user->getUserInfo();
+    ?>
     <div class="grid-item">
         <div class="">
-            <div class="username">USERNAME</div>
+            <div class="username"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
         </div>
         <div class="thumbnail" style="width:400px;height:400px;background-image:url(<?php echo $c['image']; ?>);background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
@@ -38,7 +43,7 @@
         <div class="description">    
             <p><?php echo $c['image_text']; ?></p>
         </div>
-        <div class="reactions">
+        <div class="reactions" data-id="<?php echo $c['id']?>">
         <?php
             $reactions = new Reaction();
             $postReactions = $reactions->getReactionsOfPost($c["id"]);
@@ -59,7 +64,7 @@
             <form action="" method="post" name="react">
             <input type="text" hidden name="post_id" id="post_id" value="<?php echo $c["id"]; ?>">
             <input type="text" name="reaction" id="reaction">
-            <input type="submit">
+            <input type="submit" id="addReaction" name="addReaction" class="addReaction" data-id="<?php echo $c["id"]?>">
             </form>
         </div>
     </div>    
@@ -70,8 +75,5 @@
 </body>
 </html>
 
-<script   src="http://code.jquery.com/jquery-3.3.1.min.js"   
-integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   
-crossorigin="anonymous"></script>
-
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="js/script.js"></script>

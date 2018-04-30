@@ -9,6 +9,7 @@ include_once("db.class.php");
         public $uploadfile;
         public $target_file;
         public $imageFileType;
+        public $user_id;
 
         /**
          * Get the value of image
@@ -54,10 +55,11 @@ include_once("db.class.php");
 
             $this->target_file = $this->src . preg_replace("![^a-z0-9]+!i", "_",basename($this->tmp["name"]));
             if(move_uploaded_file($this->tmp["tmp_name"], $this->target_file)){
-                $query = "insert into posts (image, image_text, upload_time) values (:image, :image_text, :upload_time) ";
+                $query = "insert into posts (image, image_text, upload_time, user_id) values (:image, :image_text, :upload_time, :user_id) ";
                 $statement = $conn->prepare($query);
                 $statement->bindValue(':image', $this->target_file);
                 $statement->bindValue(':image_text', $this->image_text);
+                $statement->bindValue(":user_id", $this->user_id);
                 $statement->bindValue(':upload_time', date("Y-m-d H:i:s"));
                 $res = $statement->execute();
                 return $res;
@@ -71,6 +73,26 @@ include_once("db.class.php");
             $statement->execute();
             $result = $statement->fetchAll( PDO::FETCH_ASSOC );
             return $result;
+        }
+
+        /**
+         * Get the value of user_id
+         */ 
+        public function getUser_id()
+        {
+                return $this->user_id;
+        }
+
+        /**
+         * Set the value of user_id
+         *
+         * @return  self
+         */ 
+        public function setUser_id($user_id)
+        {
+                $this->user_id = $user_id;
+
+                return $this;
         }
     }
 ?>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once("classes/posts.class.php");
 if(!empty($_POST)){
     try{
@@ -6,6 +7,7 @@ if(!empty($_POST)){
         $post->tmp = $_FILES["fileToUpload"];
         //$post->PhotoCheck();
         $post->setImage_text($_POST["image_text"]);
+        $post->setUser_id($_SESSION["user_id"]);
         $post->PhotoUpload();
         header("Location: index.php");
     } catch (Exception $e) {
