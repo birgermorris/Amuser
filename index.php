@@ -15,8 +15,6 @@
     }
     if($_POST["post_id"] == $_SESSION["user_id"]){
         $picture = new Posts();
-        $picture->setPost_id($_POST["post_id"]);
-        $picture->setUser_id($_SESSION['user_id']);
         $picture->removePicture();
 
     }
