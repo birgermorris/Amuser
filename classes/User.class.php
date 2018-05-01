@@ -113,7 +113,7 @@ class User {
                 //query opbouwen INSERT
                 $statement = $conn->prepare("INSERT INTO users (firstname, lastname, email, password) 
                 VALUES (:firstname, :lastname, :email, :password)");
-                $statement->bindParam(':firstname', $this->email);
+                $statement->bindParam(':firstname', $this->firstname);
                 $statement->bindParam(':lastname', $this->lastname);
                 $statement->bindParam(':email', $this->email);
                 /*$options = [

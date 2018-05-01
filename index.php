@@ -1,7 +1,19 @@
 <?php
+    include_once("classes/User.class.php");
     include_once("classes/posts.class.php");
+    include_once("classes/reaction.class.php");
     include_once("includes/functions.inc.php");
+    session_start();
     $collection = Posts::getAll();
+
+    if(isset($_POST['reaction']) && !empty($_POST['reaction']) && !empty($_POST["post_id"])){
+        $reaction = new Reaction();
+        $reaction->setPost_id($_POST["post_id"]);
+        $reaction->setUser_id($_SESSION['user_id']);
+        $reaction->setReaction_text($_POST["reaction"]);
+        $reaction->create();
+    }
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,15 +28,44 @@
 <?php include_once("includes/error.inc.php"); ?>
 <div class="grid-container">
     <?php foreach($collection as $c): ?>
+    <?php 
+        $user = new User();
+        $user->setUser_id($c['user_id']);
+        $thisUser = $user->getUserInfo();
+    ?>
     <div class="grid-item">
         <div class="">
-            <div class="username">USERNAME</div>
+            <div class="username"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
         </div>
         <div class="thumbnail" style="width:400px;height:400px;background-image:url(<?php echo $c['image']; ?>);background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
         </div>
         <div class="description">    
             <p><?php echo $c['image_text']; ?></p>
+        </div>
+        <div class="reactions" data-id="<?php echo $c['id']?>">
+        <?php
+            $reactions = new Reaction();
+            $postReactions = $reactions->getReactionsOfPost($c["id"]);
+        ?>
+        <h4>Reacties:</h4>
+        <?php foreach($postReactions as $postReaction): ?>
+        <?php
+            $reactionUser = new User();
+            $reactionUser->setUser_id($postReaction["user_id"]);
+            $reactionUserData = $reactionUser->getUserInfo();
+        ?>
+        <p>
+        <?php echo $reactionUserData["firstname"] . " " . $reactionUserData["lastname"] . ": " . $postReaction["reaction_text"]; ?>
+        </p>
+        <?php endforeach; ?>
+        </div>
+        <div class="react">
+            <form action="" method="post" name="react">
+            <input type="text" hidden name="post_id" id="post_id" value="<?php echo $c["id"]; ?>">
+            <input type="text" name="reaction" id="reaction">
+            <input type="submit" id="addReaction" name="addReaction" class="addReaction" data-id="<?php echo $c["id"]?>">
+            </form>
         </div>
     </div>    
     <?php endforeach; ?>
@@ -34,8 +75,5 @@
 </body>
 </html>
 
-<script   src="http://code.jquery.com/jquery-3.3.1.min.js"   
-integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   
-crossorigin="anonymous"></script>
-
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="js/script.js"></script>
