@@ -34,8 +34,8 @@
         $thisUser = $user->getUserInfo();
     ?>
     <div class="grid-item">
-        <div class="">
-            <div class="username"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></div>
+        <div class="">a
+            <div class="username">a<?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
         </div>
         <div class="thumbnail" style="width:400px;height:400px;background-image:url(<?php echo $c['image']; ?>);background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">

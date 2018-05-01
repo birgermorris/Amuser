@@ -67,6 +67,13 @@ include_once("db.class.php");
                 echo "Sorry, there was an error uploading your file.";
             }
         }
+        public function removePicture(){
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("delete * from posts");
+            $result = $statement->execute();
+            return $result;
+
+        }
         public static function getAll() {
             $conn = Db::getInstance();
             $statement = $conn->prepare('select * from posts ORDER BY upload_time DESC');
