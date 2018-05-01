@@ -13,7 +13,7 @@
         $reaction->setReaction_text($_POST["reaction"]);
         $reaction->create();
     }
-    if($_POST["post_id"] == $_SESSION["user_id"]){
+    if($_POST['post_id'] == $_SESSION['user_id']){
         $picture = new Posts();
         $picture->removePicture();
 

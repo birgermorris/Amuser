@@ -29,8 +29,14 @@ if(!empty($_POST)){
         <input type="file" name="fileToUpload" id="fileToUpload">
         <div>
             <textarea id="image_text" cols="40" rows="4" name="image_text" placeholder="Say something about this image..."></textarea>
-  	    </div>
+          </div>
+        <button id="btnLocation">Get my location</button>  
+        <p id="myloc"></p>
         <input type="submit" value="Upload Image" name="submit">
+        
     </form>
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="js/script.js"></script>    
 </body>
 </html>
