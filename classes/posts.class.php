@@ -10,6 +10,7 @@ include_once("db.class.php");
         public $target_file;
         public $imageFileType;
         public $user_id;
+        public $post_id;
 
         /**
          * Get the value of image
@@ -69,7 +70,8 @@ include_once("db.class.php");
         }
         public function removePicture(){
             $conn = Db::getInstance();
-            $statement = $conn->prepare("delete * from posts");
+            $statement = $conn->prepare("delete * from posts where post_id = :post_id");
+            $statement->bindParam(":post_id", $post_id);
             $result = $statement->execute();
             return $result;
 
@@ -101,5 +103,24 @@ include_once("db.class.php");
 
                 return $this;
         }
+
+        /**
+         * Get the value of post_id
+         */ 
+        public function getPost_id()
+        {
+                return $this->post_id;
+        }
+
+        /**
+         * Set the value of post_id
+         *
+         * @return  self
+         */ 
+        public function setPost_id($post_id)
+        {
+                $this->post_id = $post_id;
+
+                return $this;
+        }
     }
-?>

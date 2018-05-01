@@ -13,6 +13,13 @@
         $reaction->setReaction_text($_POST["reaction"]);
         $reaction->create();
     }
+    if($_POST["post_id"] == $_SESSION["user_id"]){
+        $picture = new Posts();
+        $picture->setPost_id($_POST["post_id"]);
+        $picture->setUser_id($_SESSION['user_id']);
+        $picture->removePicture();
+
+    }
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -34,11 +41,14 @@
         $thisUser = $user->getUserInfo();
     ?>
     <div class="grid-item">
-        <div class="">a
+        <a href="#" id="delete">Delete image</a>
+        <div class="">
             <div class="username">a<?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
         </div>
-        <div class="thumbnail" style="width:400px;height:400px;background-image:url(<?php echo $c['image']; ?>);background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
+        <div class="thumbnail" 
+        style="width:400px;height:400px;background-image:url(<?php echo $c['image']; ?>
+        );background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
         </div>
         <div class="description">    
             <p><?php echo $c['image_text']; ?></p>
@@ -59,7 +69,7 @@
         <?php echo $reactionUserData["firstname"] . " " . $reactionUserData["lastname"] . ": " . $postReaction["reaction_text"]; ?>
         </p>
         <?php endforeach; ?>
-        </div>
+         </div>
         <div class="react">
             <form action="" method="post" name="react">
             <input type="text" hidden name="post_id" id="post_id" value="<?php echo $c["id"]; ?>">
