@@ -41,7 +41,7 @@
     <div class="grid-item">
         <a href="#" id="delete">Delete image</a>
         <div class="">
-            <div class="username">a<?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></div>
+            <div class="username"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
         </div>
         <div class="thumbnail" 
