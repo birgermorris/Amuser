@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once("classes/posts.class.php");
+include_once("classes/location.class.php");
 if(!empty($_POST)){
     try{
         $post = new Posts();
@@ -31,10 +32,10 @@ if(!empty($_POST)){
             <textarea id="image_text" cols="40" rows="4" name="image_text" placeholder="Say something about this image..."></textarea>
           </div>
         <button id="btnLocation">Get my location</button>  
-        <input id="myloc">
+        <input id="myloc" <?php echo $adress ?>>
         <div id="map"></div>
 
-
+        <br>
         <input type="submit" value="Upload Image" name="submit">
         
     </form>
