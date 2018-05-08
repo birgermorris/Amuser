@@ -26,17 +26,16 @@ $(document).ready(function() {
         }
     });
 
-    function initMap() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            e.preventDefault();
-        }
-
-        function showPosition(position) {
-            $("#myloc").innerHTML = "longitude " +
-                position.coords.longitude + "<br> Latitude: " +
-                postion.coords.latitude + "<br>";
-        }
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        e.preventDefault();
     }
+
+    function showPosition(position) {
+        $("#myloc").innerHTML = "longitude " +
+            position.coords.longitude + "<br> Latitude: " +
+            postion.coords.latitude + "<br>";
+    }
+
 });
