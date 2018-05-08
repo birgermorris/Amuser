@@ -31,11 +31,10 @@ $(document).ready(function() {
     } else {
         e.preventDefault();
     }
+
+    function showPosition(position) {
+        $("#myloc").innerHTML = "longitude " +
+            position.coords.longitude + "<br> Latitude: " +
+            postion.coords.latitude + "<br>";
+    }
 });
-/*
-function showPosition(position) {
-    $("#myloc").innerHTML = "longitude " +
-        position.coords.longitude + "<br> Latitude: " +
-        postion.coords.latitude + "<br>";
-}
-*/
