@@ -31,7 +31,7 @@ if(!empty($_POST)){
             <textarea id="image_text" cols="40" rows="4" name="image_text" placeholder="Say something about this image..."></textarea>
           </div>
         <button id="btnLocation">Get my location</button>  
-        <p id="myloc"></p>
+        <input id="myloc">
         <div id="map"></div>
 
 
