@@ -3,21 +3,25 @@
         background-image: url(../images/background.png);
         background-repeat: no-repeat;
         background-size: cover;
+        width: 100%;
+        height: 100%;
+        font-family: arial;
     }
     
     h2 {
         color: #DA4741;
         font-size: 35px;
+        text-align: center;
     }
     
     .register {
         padding: 2%;
-        margin-left: 10%;
-        margin-top: 10%;
+        margin-left: 15%;
         justify-content: space-around;
-        width: 80%;
-        height: 80%;
-        color: grey;
+        width: 70%;
+        height: 70%;
+        color: whitesmoke;
+        text-align: center;
     }
     
     form {
@@ -27,17 +31,29 @@
         grid-column: form;
         grid-row: form;
         text-align: center;
+        color: whitesmoke;
+        width: 70%;
+        margin-left: 15%;
     }
     
     form input,
     form textarea {
-        width: 84%;
+        width: 70%;
         margin: 8px;
-        padding: 5%;
+        padding: 2%;
         border: none;
         font-size: 1.4em;
         background-color: #fff;
         resize: none;
+        text-align: center;
+    }
+    
+    #login {
+        color: whitesmoke;
+    }
+    
+    #login:hover {
+        color: #DA4741;
     }
     
     .btnSubmit {
@@ -55,38 +71,30 @@
     }
     
     nav {
-        background-color:#2A4162;
-        color:white;
+        background-color: #2A4162;
+        color: white;
         width: 100%;
         display: flex;
         justify-content: space-between;
     }
-
+    
     .right_actions {
         display: flex;
         align-items: center;
     }
-
+    
     .right_actions a:link,
     .right_actions a:visited,
     .right_actions a:hover,
     .right_actions a:active {
-        color:white;
-        text-decoration:none;
-        margin-left:10px;
-    }
-
-    .search form {
-        padding:5px;
-        margin:0px;
+        color: white;
+        text-decoration: none;
+        margin-left: 10px;
     }
     
-    .logo {
-        background-image: url(../images/logo.png);
-        width: 30px;
-        height: 30px;
-        background-repeat: no-repeat;
-        margin: 2px;
+    .search form {
+        padding: 5px;
+        margin: 0px;
     }
     
     input#search {
@@ -116,31 +124,10 @@
         color: #DA4741;
     }
     
-    input[type="submit"] {
-        width: 94%;
-        margin: 10px;
-        padding: 5%;
-        background-color: #DA4741;
-        color: #fff;
-        border: none;
-        font-size: 1.4em;
-        text-transform: uppercase;
-    }
-    
-    .edit_profile input {}
-    
     .edit_profile img {
         width: 100px;
         height: 100px;
         border-radius: 50%;
-    }
-    
-    body {
-        margin: 0;
-        background-image: url(../images/background.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        font-family: arial;
     }
     
     input.searchbutton {
@@ -150,7 +137,7 @@
     
     .grid-container {
         display: grid;
-        width:1200px;
+        width: 1200px;
         margin: 0px auto;
         grid-column-gap: 30px;
         grid-row-gap: 20px;
@@ -174,7 +161,36 @@
     .posts a {
         color: #fff;
     }
-    .logo img{
+    
+    .logo img {
         width: 100px;
+        text-align: center;
     }
-  
+    
+    img {
+        width: 220px;
+        text-align: center;
+        padding-top: 105px;
+    }
+    
+    .login {
+        text-align: center;
+        color: #fff;
+        align-items: center;
+    }
+    
+    .login form {
+        grid-column: form;
+        grid-row: form;
+    }
+    
+    .netflixLogin {
+        height: 55vh;
+        /* 100vh */
+        display: grid;
+        grid-template-columns: 1fr [form] minmax(240px, 500px) 1fr;
+        /* 240, 450*/
+        grid-template-rows: 1fr [form] 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+    }

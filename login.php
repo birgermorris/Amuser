@@ -38,14 +38,15 @@ else{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style_login.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Amuser</title>
 </head>
 <body>
 <?php include_once("includes/error.inc.php"); ?>
-
+<div class="login">
     <section class="login">
         <img src="images/logo.png" alt="logo Amuser">
+        <h2>Login</h2>
     <div class="netflixLogin">
         <form action="" method="post">
             <?php if (isset($error)): ?>
@@ -55,14 +56,19 @@ else{
 					</p>
 				</div>
             <?php endif; ?>
-
+            <label for="email">email</label>
+            <br>
             <input type="text" id="email" name="email" placeholder="Email">
+            <br>
+            <label for="password">Password</label>
+            <br>
             <input type="password" id="password" name="password" placeholder="Password">
-
-            <input type="submit" value="Sign in">
+            <br>
+            <input type="submit" class="btnSubmit" value="Sign in">
         </form>
     </div>
     </section>
+</div>
 
 </body>
 </html>

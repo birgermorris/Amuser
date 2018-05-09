@@ -30,7 +30,10 @@ if (!empty($_POST)){
     <title>Register</title>
 </head>
 <body>
+
 <div class="register">
+    <section class="login">
+<img src="images/logo.png" alt="logo Amuser">
     <h2>Sign up for an account</h2>
 
 <?php if ( isset($message)): ?>
@@ -41,20 +44,26 @@ if (!empty($_POST)){
 
 <form action="" method="post">
     <label for="firstname">firstname</label>
+    <br>
     <input type="text" name="firstname" id="firstname">
     <br>
     <label for="lastname">lastname</label>
+    <br>
     <input type="text" name="lastname" id="lastname">
     <br>
     <label for="email">email</label>
+    <br>
     <input type="text" name="email" id="email">
     <br>
     <label for="password">Password</label>
+    <br>
     <input type="password" name="password" id="password">
     <br>
     <button type="submit" class="btnSubmit">submit</button>
+    <p>Or</p>
+    <a id="login" href="login.php">login</a>
 </form>
 </div>
-
+</section>
 </body>
 </html>
