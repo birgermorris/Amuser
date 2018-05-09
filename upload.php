@@ -32,16 +32,16 @@ if(!empty($_POST)){
             <textarea id="image_text" cols="40" rows="4" name="image_text" placeholder="Say something about this image..."></textarea>
           </div>
         <button id="btnLocation">Get my location</button>  
-        <input id="myloc" <?php echo $adress ?>>
+        <input id="myloc">
         <div id="map"></div>
 
         <br>
-        <input type="submit" value="Upload Image" name="submit">
+        <input type="submit" value="GetLocation" name="Location">
         
     </form>
 
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsEDVTT48WYsWVqie1tN_4xUfi_YAhkBo&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCsEDVTT48WYsWVqie1tN_4xUfi_YAhkBo">
     </script>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="js/script.js"></script>    
