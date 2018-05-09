@@ -38,4 +38,13 @@
             }
         }
     }
+
+    function isHashtag($string) {
+        preg_match_all('/(?<!\w)#\S+/', $string, $matches);
+        if(!empty($matches[0])){
+            return true;
+        } else {
+            return false;   
+        };
+    }
 ?>
