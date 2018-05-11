@@ -76,13 +76,16 @@ include_once("db.class.php");
             return $result;
 
         }
+
         public static function getAll() {
             $conn = Db::getInstance();
-            $statement = $conn->prepare('select * from posts ORDER BY upload_time DESC');
+            $limitposts = 10;
+            $statement = $conn->prepare("select * from posts ORDER BY upload_time DESC limit $limitposts");
             $statement->execute();
             $result = $statement->fetchAll( PDO::FETCH_ASSOC );
             return $result;
         }
+
 
         /**
          * Get the value of user_id
