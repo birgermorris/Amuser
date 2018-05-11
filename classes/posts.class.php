@@ -77,9 +77,10 @@ include_once("db.class.php");
 
         }
 
+        // posts limit by 20 on the index page
         public static function getAll() {
             $conn = Db::getInstance();
-            $limitposts = 10;
+            $limitposts = 20;
             $statement = $conn->prepare("select * from posts ORDER BY upload_time DESC limit $limitposts");
             $statement->execute();
             $result = $statement->fetchAll( PDO::FETCH_ASSOC );

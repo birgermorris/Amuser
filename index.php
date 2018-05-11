@@ -78,7 +78,7 @@
     </div>    
     <?php endforeach; ?>
 </div>
-<button class="btnLoadMore" type="load more" href="#">Load more</button>
+<input type="button" id="load" value="Load More Posts">
 
 </body>
 </html>

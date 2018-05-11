@@ -76,3 +76,23 @@ if (navigator.geolocation) {
 } else {
     error('not supported');
 }
+
+$("#load").click(function() {
+    Loadmore();
+});
+
+function Loadmore() {
+    $ajax({
+        type: 'post',
+        url: '',
+        data: {
+            getresult: val
+        },
+        success: function(response) {
+            var content = '';
+            ontent.innerHTML = content.innerHTML + response;
+
+            //increase value with 20
+        }
+    })
+}
