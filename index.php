@@ -13,10 +13,14 @@
         $reaction->setReaction_text($_POST["reaction"]);
         $reaction->create();
     }
-    if($_POST['post_id'] == $_SESSION['user_id']){
+    if($_POST['user_id'] == $_SESSION['user_id']){
         $picture = new Posts();
         $picture->removePicture();
 
+    }
+    if(!empty($_POST['load'])) {
+        $picture = new Posts();
+        $picture-> getMore();
     }
 
 ?><!DOCTYPE html>
@@ -78,7 +82,7 @@
     </div>    
     <?php endforeach; ?>
 </div>
-<input type="button" id="load" value="Load More Posts">
+<input type="button" id="load" value="Load More Posts" name="load">
 
 </body>
 </html>

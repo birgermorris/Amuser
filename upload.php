@@ -36,7 +36,7 @@ if(!empty($_POST)){
         <div id="map"></div>
 
         <br>
-        <input type="submit" value="GetLocation" name="Location">
+        <input type="submit" value="Upload picture" name="Upload">
         
     </form>
 

@@ -70,8 +70,8 @@ include_once("db.class.php");
         }
         public function removePicture(){
             $conn = Db::getInstance();
-            $statement = $conn->prepare("delete * from posts where post_id = :post_id");
-            $statement->bindParam(":post_id", $post_id);
+            $statement = $conn->prepare("delete * from posts where user_id = :user_id");
+            $statement->bindParam(":user_id", $user_id);
             $result = $statement->execute();
             return $result;
 
@@ -85,6 +85,9 @@ include_once("db.class.php");
             $statement->execute();
             $result = $statement->fetchAll( PDO::FETCH_ASSOC );
             return $result;
+        }
+        public function getMore(){
+                
         }
 
 
