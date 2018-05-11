@@ -32,6 +32,19 @@ Class Search {
         $result = $statement->fetchAll();
         return $result;
     }
+
+    public function searchLocation($lat, $lng) {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT *, ( 3959 * acos( cos( radians(:lat) ) * cos( radians( lat ) ) * 
+        cos( radians( lng ) - radians(:lng) ) + sin( radians(:lat) ) * 
+        sin( radians( lat ) ) ) ) AS distance FROM posts HAVING
+        distance < 3 ORDER BY distance /*LIMIT 0 , 20*/;");
+        $statement->bindValue('lat', $lat);
+        $statement->bindValue('lng', $lng);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        return $result;
+    }
 }
 
 ?>

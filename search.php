@@ -1,14 +1,29 @@
 <?php 
     include_once("classes/search.class.php");
     include_once("classes/hashtag.class.php");
+    include_once("classes/User.class.php");
     include_once("includes/functions.inc.php");
 
     session_start();
 
+    if (!empty($_GET["location"])) {
+        if($_GET["location"]){
+            $location = true;
+        }
+    }
+
     if (!empty($_GET["search"])) {
-        $search = new Search();
-        $search->setSearchText($_GET["search"]);
-        $results = $search->search();
+        if(!empty($location)){
+            $searchTermLocation = getLocation($_GET["search"]);
+            $search = new Search();
+            $results = $search->searchLocation($searchTermLocation['lat'], $searchTermLocation["lng"]);
+        } else {   
+            $search = new Search();
+            $search->setSearchText($_GET["search"]);
+            $results = $search->search();  
+        }
+    } else {
+        header('Location: index.php');
     }
 
     if(isset($_POST["unfollowHashtag"])){
@@ -63,6 +78,7 @@
 <?php include_once("includes/error.inc.php"); ?>
 
     <h1>Zoeken: <?php echo $_GET["search"]; ?></h1>
+    <a href="search.php?search=<?php echo urlencode($_GET["search"]); ?>">Zoeken</a><a href="search.php?search=<?php echo urlencode($_GET["search"]); ?>&location=true">Locatie</a>
     <?php if(isHashtag($_GET["search"]) && $hashfollow == false ): ?>
     <form action="search.php?search=<?php echo urlencode($_GET["search"]); ?>" method="post"><input type="hidden" name="search" id="search" value="<?php echo $_GET["search"]; ?>"><input type="submit" class="searchbutton" name="followHashtag" value="Follow"></form>
     <?php elseif(isHashtag($_GET["search"]) && $hashfollow == true): ?>
@@ -70,9 +86,14 @@
     <?php endif; ?>
     
     <?php foreach ($results as $result): ?>
+    <?php 
+        $user = new User();
+        $user->setUser_id($result['user_id']);
+        $thisUser = $user->getUserInfo();
+    ?>
     <div class="grid-item">
-        <div class="">
-            <div class="username">USERNAME</div>
+    <div class="">
+            <div class="username"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></div>
             <div class="timeAgo"><?php echo timing($result['upload_time']); ?></div>
         </div>
         <div class="thumbnail" style="width:400px;height:400px;background-image:url(<?php echo $result['image']; ?>);background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">

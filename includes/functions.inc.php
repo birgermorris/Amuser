@@ -47,4 +47,18 @@
             return false;   
         };
     }
+
+    function getLocation($location){
+        try {
+        $prepAddr = str_replace(' ','+',$location);
+        $geocode=file_get_contents('https://maps.google.com/maps/api/geocode/json?address='.$prepAddr);
+        $output= json_decode($geocode);
+        $result['lat'] = $output->results[0]->geometry->location->lat;
+        $result['lng'] = $output->results[0]->geometry->location->lng;
+        return $result;
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
+    }
+    
 ?>
