@@ -13,9 +13,14 @@
         $reaction->setReaction_text($_POST["reaction"]);
         $reaction->create();
     }
-    if($_POST['user_id'] == $_SESSION['user_id']){
+    if($_POST['delete']){
+        if($_SESSION['user_id'] == $_POST['post_id'] ){
         $picture = new Posts();
         $picture->removePicture();
+        }
+        else {
+
+        }
 
     }
     if(!empty($_POST['load'])) {
@@ -43,7 +48,7 @@
         $thisUser = $user->getUserInfo();
     ?>
     <div class="grid-item">
-        <a href="#" id="delete">Delete image</a>
+        <a href="index.php" id="delete" name="delete">Delete image</a>
         <div class="">
             <div class="username"><a href="profile.php"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></a></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
