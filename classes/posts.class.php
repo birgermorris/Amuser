@@ -11,6 +11,7 @@ include_once("db.class.php");
         public $imageFileType;
         public $user_id;
         public $post_id;
+        public $PictureLocation;
 
         /**
          * Get the value of image
@@ -56,12 +57,13 @@ include_once("db.class.php");
 
             $this->target_file = $this->src . preg_replace("![^a-z0-9]+!i", "_",basename($this->tmp["name"]));
             if(move_uploaded_file($this->tmp["tmp_name"], $this->target_file)){
-                $query = "insert into posts (image, image_text, upload_time, user_id) values (:image, :image_text, :upload_time, :user_id) ";
+                $query = "insert into posts (image, image_text, upload_time, user_id, picture_location) values (:image, :image_text, :upload_time, :user_id, :picture_location) ";
                 $statement = $conn->prepare($query);
                 $statement->bindValue(':image', $this->target_file);
                 $statement->bindValue(':image_text', $this->image_text);
                 $statement->bindValue(":user_id", $this->user_id);
                 $statement->bindValue(':upload_time', date("Y-m-d H:i:s"));
+                $stmt->bindValue(":picture_location",$this->PictureLocation, PDO::PARAM_STR);
                 $res = $statement->execute();
                 return $res;
             } else {
@@ -127,6 +129,26 @@ include_once("db.class.php");
         public function setPost_id($post_id)
         {
                 $this->post_id = $post_id;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of PictureLocation
+         */ 
+        public function getPictureLocation()
+        {
+                return $this->PictureLocation;
+        }
+
+        /**
+         * Set the value of PictureLocation
+         *
+         * @return  self
+         */ 
+        public function setPictureLocation($PictureLocation)
+        {
+                $this->PictureLocation = $PictureLocation;
 
                 return $this;
         }

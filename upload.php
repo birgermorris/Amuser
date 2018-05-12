@@ -9,6 +9,7 @@ if(!empty($_POST)){
         //$post->PhotoCheck();
         $post->setImage_text($_POST["image_text"]);
         $post->setUser_id($_SESSION["user_id"]);
+        $post->setPictureLocation($_POST['city']);
         $post->PhotoUpload();
         header("Location: index.php");
     } catch (Exception $e) {
@@ -31,8 +32,8 @@ if(!empty($_POST)){
         <div>
             <textarea id="image_text" cols="40" rows="4" name="image_text" placeholder="Say something about this image..."></textarea>
           </div>
-        <button id="btnLocation">Get my location</button>  
-        <input id="myloc">
+        <input type="hidden" name="filter" value="">
+        <input type="hidden" name="city" value="" id="cords"> 
         <div id="map"></div>
 
         <br>
@@ -40,9 +41,7 @@ if(!empty($_POST)){
         
     </form>
 
-<script async defer
-    src="https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCsEDVTT48WYsWVqie1tN_4xUfi_YAhkBo">
-    </script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCi8Jvkk113gTyGZCjlu2yGcLm5LdwvgO4"></script>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="js/script.js"></script>    
 
