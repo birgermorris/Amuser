@@ -72,8 +72,9 @@ include_once("db.class.php");
         }
         public function removePicture(){
             $conn = Db::getInstance();
-            $statement = $conn->prepare("delete * from posts where user_id = :user_id");
+            $statement = $conn->prepare("DELETE FROM posts where user_id = :user_id AND post_id = :post_id");
             $statement->bindParam(":user_id", $user_id);
+            $statement->bindParam("post_id", $post_id);
             $result = $statement->execute();
             return $result;
 
@@ -91,7 +92,6 @@ include_once("db.class.php");
         public function getMore(){
                 
         }
-
 
         /**
          * Get the value of user_id
