@@ -15,12 +15,11 @@
         $reaction->create();
     }
 
-    if(isset($user)){
+/*
             $post = new Posts();
-            $post->deletePost($user);
-        }
-        else {
-    }
+            $post->deletePost($user_id);
+*/
+    
 /*
 
 $no = $_POST['getresult'];
@@ -87,9 +86,9 @@ $items = $post->loadMore($no);
     <?php endforeach; ?>
 </div>
 
-<?php if(count($post->getAll()) == 20): ?>
+<?php if(count(Posts::getAll()) == 20): ?>
     <input type="hidden" id="result_no" value="20">
-    <button><a href="#" id="btn_loadmore">Load More</a></button>
+    <button><a href="#" id="btnLoadMore">Load More</a></button>
 <?php endif; ?>
 
 </body>

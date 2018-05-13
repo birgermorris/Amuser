@@ -54,7 +54,6 @@ include_once("db.class.php");
         }
         public function PhotoUpload(){
             $conn = Db::getInstance();
-
             $this->target_file = $this->src . preg_replace("![^a-z0-9]+!i", "_",basename($this->tmp["name"]));
             if(move_uploaded_file($this->tmp["tmp_name"], $this->target_file)){
                 $query = "insert into posts (image, image_text, upload_time, user_id, picture_location) values (:image, :image_text, :upload_time, :user_id, :picture_location) ";
@@ -63,20 +62,22 @@ include_once("db.class.php");
                 $statement->bindValue(':image_text', $this->image_text);
                 $statement->bindValue(":user_id", $this->user_id);
                 $statement->bindValue(':upload_time', date("Y-m-d H:i:s"));
-                $stmt->bindValue(":picture_location",$this->PictureLocation, PDO::PARAM_STR);
+                $statement->bindValue(":picture_location",$this->PictureLocation, PDO::PARAM_STR);
                 $res = $statement->execute();
                 return $res;
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
         }
-        public function deletePost($user_id){
+        /*
+        public function deletePost($id){
             $conn = Db::getInstance();
-            $statement = $conn->prepare("DELETE FROM posts where user_id = :user_id");
-            $statement->bindParam(":user_id", $user_id);
+            $statement = $conn->prepare("DELETE FROM posts where id = id");
+            $statement->bindParam(":id", $id);
             $result = $statement->execute();
             return $result;
         }
+        */
 
         // posts limit by 20 on the index page
         public static function getAll() {
