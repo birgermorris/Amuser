@@ -40,7 +40,7 @@ if(!empty($_POST)){
         <input type="submit" value="Upload picture" name="Upload">
         
     </form>
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCi8Jvkk113gTyGZCjlu2yGcLm5LdwvgO4"></script>
+    https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBsKBPVq45JV7am-qxee3ECD0kVZTlv1sw
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="js/script.js"></script>    
 
