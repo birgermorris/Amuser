@@ -13,6 +13,7 @@
         $reaction->setReaction_text($_POST["reaction"]);
         $reaction->create();
     }
+    /*
     if($_POST['delete']){
         if($_SESSION['user_id'] == $_POST['post_id'] ){
         $picture = new Posts();
@@ -23,10 +24,10 @@
         }
 
     }
-    if(!empty($_POST['load'])) {
-        $picture = new Posts();
-        $picture-> getMore();
-    }
+    */
+$no = $_POST['getresult'];
+$post = new Posts();
+$items = $post->loadMore($no);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -87,7 +88,11 @@
     </div>    
     <?php endforeach; ?>
 </div>
-<input type="button" id="load" value="Load More Posts" name="load">
+
+<?php if(count($post->getAll()) == 20): ?>
+    <input type="hidden" id="result_no" value="20">
+    <button><a href="#" id="btn_loadmore">Load More</a></button>
+<?php endif; ?>
 
 </body>
 </html>

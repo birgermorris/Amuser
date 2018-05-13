@@ -89,8 +89,13 @@ include_once("db.class.php");
             $result = $statement->fetchAll( PDO::FETCH_ASSOC );
             return $result;
         }
-        public function getMore(){
-                
+ public function loadMore(){
+        $conn  = Db::getInstance();
+        $statement = $conn->prepare(" SELECT DISTINCT id, image, image_text, comment FROM posts  
+        ORDER BY id DESC limit $no ,20");
+        $statement->bindValue(":id",$_SESSION['id']);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC); 
         }
 
         /**
