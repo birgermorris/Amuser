@@ -76,7 +76,6 @@ include_once("db.class.php");
             $statement->bindParam(":user_id", $user_id);
             $result = $statement->execute();
             return $result;
-
         }
 
         // posts limit by 20 on the index page

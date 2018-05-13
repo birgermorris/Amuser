@@ -17,7 +17,7 @@
 
     if(isset($user)){
             $post = new Posts();
-            $post->deletePost($user_id);
+            $post->deletePost($user);
         }
         else {
     }
