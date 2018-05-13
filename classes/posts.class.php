@@ -70,11 +70,10 @@ include_once("db.class.php");
                 echo "Sorry, there was an error uploading your file.";
             }
         }
-        public function removePicture(){
+        public function deletePost($user_id){
             $conn = Db::getInstance();
-            $statement = $conn->prepare("DELETE FROM posts where user_id = :user_id AND post_id = :post_id");
+            $statement = $conn->prepare("DELETE FROM posts where user_id = :user_id");
             $statement->bindParam(":user_id", $user_id);
-            $statement->bindParam("post_id", $post_id);
             $result = $statement->execute();
             return $result;
 
@@ -89,7 +88,7 @@ include_once("db.class.php");
             $result = $statement->fetchAll( PDO::FETCH_ASSOC );
             return $result;
         }
- public function loadMore(){
+        public function loadMore(){
         $conn  = Db::getInstance();
         $statement = $conn->prepare(" SELECT DISTINCT id, image, image_text, comment FROM posts  
         ORDER BY id DESC limit $no ,20");

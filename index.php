@@ -4,6 +4,7 @@
     include_once("classes/reaction.class.php");
     include_once("includes/functions.inc.php");
     session_start();
+    $user = $_SESSION['user_id'];
     $collection = Posts::getAll();
 
     if(isset($_POST['reaction']) && !empty($_POST['reaction']) && !empty($_POST["post_id"])){
@@ -13,22 +14,19 @@
         $reaction->setReaction_text($_POST["reaction"]);
         $reaction->create();
     }
-    /*
-    if($_POST['delete']){
-        if($_SESSION['user_id'] == $_POST['post_id'] ){
-        $picture = new Posts();
-        $picture->removePicture();
+
+    if(isset($user)){
+            $post = new Posts();
+            $post->deletePost($user_id);
         }
         else {
-
-        }
-
     }
-    */
+/*
+
 $no = $_POST['getresult'];
 $post = new Posts();
 $items = $post->loadMore($no);
-
+*/
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +47,7 @@ $items = $post->loadMore($no);
         $thisUser = $user->getUserInfo();
     ?>
     <div class="grid-item">
-        <a href="index.php" id="delete" name="delete">Delete image</a>
+        <a href="./succes.php" id="deletepost" class="btn btn-danger" data-id="<?php echo $test['id']; ?>">Delete</a>
         <div class="">
             <div class="username"><a href="profile.php"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></a></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
