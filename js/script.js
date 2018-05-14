@@ -76,7 +76,7 @@ if (navigator.geolocation) {
 } else {
     error('not supported');
 }
-
+*/
 $("#load").click(function() {
     Loadmore();
 });
@@ -90,13 +90,13 @@ function Loadmore() {
         },
         success: function(response) {
             var content = '';
-            ontent.innerHTML = content.innerHTML + response;
+            content.innerHTML = content.innerHTML + response;
 
             //increase value with 20
         }
     })
 }
- */
+/*
 (function() {
     var App = {
         errorFunction: function() {
@@ -153,3 +153,4 @@ function Loadmore() {
     }
     App.initialize();
 }());
+*/
