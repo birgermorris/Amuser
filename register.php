@@ -42,7 +42,7 @@ if (!empty($_POST)){
         </div>
         <?php endif;?>
 
-<form action="" method="post">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
     <label for="firstname">firstname</label>
     <br>
     <input type="text" name="firstname" id="firstname">

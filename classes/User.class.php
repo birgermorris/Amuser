@@ -36,7 +36,7 @@ class User {
                         throw new Exception("Firstname cannot be empty");
                         }
                 else {
-                $this->firstname = $firstname;
+                $this->firstname = htmlspecialchars($firstname);
                 return $this; 
                 }       
         }
@@ -60,7 +60,7 @@ class User {
                 throw new Exception("Lastname cannot be empty");
                 }
                 else {
-                $this->lastname = $lastname;
+                $this->lastname = htmlspecialchars($lastname);
                 }
                 return $this;
         }
@@ -103,7 +103,7 @@ class User {
          */ 
         public function setUser_id($user_id)
         {
-                $this->user_id = $user_id;
+                $this->user_id = htmlspecialchars($user_id);
                 return $this;
         }
 
@@ -231,7 +231,7 @@ class User {
                         throw new Exception("Email cannot be empty");
                 }
                 else {
-                $this->email = $email;
+                $this->email = htmlspecialchars($email);
 
                 return $this;
                 }
@@ -252,7 +252,7 @@ class User {
          */ 
         public function setBio($bio)
         {
-                $this->bio = $bio;
+                $this->bio = htmlspecialchars($bio);
 
                 return $this;
         }
@@ -377,7 +377,7 @@ class User {
          */ 
         public function setPassword_login($password_login)
         {
-                $this->password_login = $password_login;
+                $this->password_login = htmlspecialchars($password_login);
 
                 return $this;
         }
@@ -398,7 +398,7 @@ class User {
          */ 
         public function setPassword_update($password_update)
         {
-                $this->password_update = $password_update;
+                $this->password_update = htmlspecialchars($password_update);
 
                 return $this;
         }

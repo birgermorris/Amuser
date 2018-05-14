@@ -23,20 +23,6 @@ function success(position) {
     document.querySelector('article').appendChild(mapcanvas);
 
     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    var myOptions = {
-        zoom: 15,
-        center: latlng,
-        mapTypeControl: false,
-        navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL },
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
-
-    var marker = new google.maps.Marker({
-        position: latlng,
-        map: map,
-        title: "You are here!"
-    });
 }
 (function() {
     var App = {
@@ -93,4 +79,5 @@ function success(position) {
         }
     }
     App.initialize();
+
 }());

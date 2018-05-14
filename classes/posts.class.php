@@ -88,6 +88,14 @@ include_once("db.class.php");
             $result = $statement->fetchAll( PDO::FETCH_ASSOC );
             return $result;
         }
+        public function getMine() {
+                $conn = Db::getInstance();
+                $statement = $conn->prepare("select * from posts ORDER BY upload_time DESC where user_id = :user_id");
+                $statement->bindValue(":user_id", $this->user_id);
+                $statement->execute();
+                $result = $statement->fetchAll( PDO::FETCH_ASSOC );
+                return $result;
+            }
         public function loadMore(){
         $conn  = Db::getInstance();
         $statement = $conn->prepare(" SELECT DISTINCT id, image, image_text, comment FROM posts  
@@ -112,7 +120,7 @@ include_once("db.class.php");
          */ 
         public function setUser_id($user_id)
         {
-                $this->user_id = $user_id;
+                $this->user_id = htmlspecialchars($user_id);
 
                 return $this;
         }
@@ -132,7 +140,7 @@ include_once("db.class.php");
          */ 
         public function setPost_id($post_id)
         {
-                $this->post_id = $post_id;
+                $this->post_id = htmlspecialchars($post_id);
 
                 return $this;
         }

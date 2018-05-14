@@ -20,12 +20,6 @@
             $post->deletePost($user_id);
 */
     
-/*
-
-$no = $_POST['getresult'];
-$post = new Posts();
-$items = $post->loadMore($no);
-*/
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,6 +44,7 @@ $items = $post->loadMore($no);
         <div class="">
             <div class="username"><a href="profile.php"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></a></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
+            <div class="location"><?php echo $c['location']; ?></div>
         </div>
         <div class="img-responsive" 
         style="width:100%;height:350px;background-image:url(<?php echo $c['image']; ?>
@@ -77,9 +72,9 @@ $items = $post->loadMore($no);
          </div>
         <div class="react">
             <form action="" method="post" name="react">
-            <input type="text" hidden name="post_id" id="post_id" value="<?php echo $c["id"]; ?>">
+            <input type="text" hidden name="post_id" id="post_id" value="<?php echo htmlspecialchars($c["id"]); ?>">
             <input type="text" name="reaction" id="reaction">
-            <input type="submit" id="addReaction" name="addReaction" class="addReaction" data-id="<?php echo $c["id"]?>">
+            <input type="submit" id="addReaction" name="addReaction" class="addReaction" data-id="<?php echo htmlspecialchars($c["id"])?>">
             </form>
         </div>
     </div>    
@@ -92,8 +87,8 @@ $items = $post->loadMore($no);
     <button><a href="#" id="btnLoadMore">Load More</a></button>
 <?php endif; ?>
 
-</body>
 </html>
-<script src="https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyCVPRko-3ZujwaomOO99Qqonwm2hAUeNHs"></script>
+
+<script src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCVPRko-3ZujwaomOO99Qqonwm2hAUeNHs"></script>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="js/script.js"></script>

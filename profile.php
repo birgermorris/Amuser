@@ -4,6 +4,8 @@
     include_once("classes/reaction.class.php");
     include_once("includes/functions.inc.php");
     session_start();
+    $collection = new Posts();
+    $collection->getMine();
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -18,12 +20,18 @@
 <?php include_once("includes/header.inc.php"); ?>
 <?php include_once("includes/error.inc.php"); ?>
 <div class="grid-container">
+    <?php foreach($collection as $c): ?>
 
     <div class="grid-item">
+        <div class="img-responsive" 
+        style="width:100%;height:350px;background-image:url(<?php echo $c['image']; ?>
+        );background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
+        </div>
 
-
+        
     </div>    
-
+    <?php endforeach; ?>
+</div>
 
 </body>
 </html>
