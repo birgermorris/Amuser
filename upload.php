@@ -33,6 +33,19 @@ if(!empty($_POST)){
         Select image to upload:
         <input type="file" name="fileToUpload" id="fileToUpload">
         <br>
+        <div class="filters">
+            <img src="" alt="" class="_1977">
+            <img src="" alt="" class="aden">
+            <img src="" alt="" class="brannan">
+            <img src="" alt="" class="brooklyn">
+            <img src="" alt="" class="clarendon">
+            <img src="" alt="" class="earlybird">
+            <img src="" alt="" class="nashville">
+            <img src="" alt="" class="willow">
+            <img src="" alt="" class="walden">
+            <img src="" alt="" class="toaster"">
+
+        </div>
         <div>
             <textarea id="image_text" cols="40" rows="4" name="image_text" placeholder="Say something about this image..."></textarea>
           </div>
