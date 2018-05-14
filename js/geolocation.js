@@ -1,4 +1,4 @@
-if (navigator.geolocation) {
+/*if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
 } else {
     error('not supported');
@@ -80,4 +80,4 @@ function success(position) {
     }
     App.initialize();
 
-}());
+}());*/

@@ -12,6 +12,8 @@ include_once("db.class.php");
         public $user_id;
         public $post_id;
         private $location;
+        private $lng;
+        private $lat;
 
         /**
          * Get the value of image
@@ -56,34 +58,42 @@ include_once("db.class.php");
             $conn = Db::getInstance();
             $this->target_file = $this->src . preg_replace("![^a-z0-9]+!i", "_",basename($this->tmp["name"]));
             if(move_uploaded_file($this->tmp["tmp_name"], $this->target_file)){
-                $query = "insert into posts (image, image_text, upload_time, user_id, location) values (:image, :image_text, :upload_time, :user_id, :location) ";
+                $query = "insert into posts (image, image_text, upload_time, user_id, lat, lng) values (:image, :image_text, :upload_time, :user_id, :lat, :lng) ";
                 $statement = $conn->prepare($query);
                 $statement->bindValue(':image', $this->target_file);
                 $statement->bindValue(':image_text', $this->image_text);
                 $statement->bindValue(":user_id", $this->user_id);
                 $statement->bindValue(':upload_time', date("Y-m-d H:i:s"));
-                $statement->bindValue(":location",$this->location, PDO::PARAM_STR);
+                $statement->bindValue(":lat",$this->lat);
+                $statement->bindValue(":lng",$this->lng);
                 $res = $statement->execute();
                 return $res;
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
         }
-        /*
+        
         public function deletePost($id){
             $conn = Db::getInstance();
-            $statement = $conn->prepare("DELETE FROM posts where id = id");
+            $statement = $conn->prepare("DELETE FROM posts where id = :id");
             $statement->bindParam(":id", $id);
             $result = $statement->execute();
             return $result;
         }
-        */
 
         // posts limit by 20 on the index page
-        public static function getAll() {
+        public static function getAll($words) {
             $conn = Db::getInstance();
             $limitposts = 20;
-            $statement = $conn->prepare("select * from posts ORDER BY upload_time DESC limit $limitposts");
+                $hashtags = array();
+                
+                $arrayLength = sizeof($words) - 1;
+                for ($i = 0; $i <= $arrayLength; $i++) {
+                        $hashtags[] = 'image_text LIKE "%'.htmlspecialchars($words[$i]["hashtag"]).'%"';
+                    }
+
+            $statement = $conn->prepare("select * from posts where user_id in (10,9,8) OR " .implode(" OR ", $hashtags) . " ORDER BY upload_time DESC limit $limitposts");
+            //AANGEZIEN FRIENDS NOG NIET GEMAAKT IS, HARD CODED FRIEND LIST OM CODE TE DOEN WERKEN
             $statement->execute();
             $result = $statement->fetchAll( PDO::FETCH_ASSOC );
             return $result;
@@ -181,6 +191,46 @@ include_once("db.class.php");
         public function setLocation($location)
         {
                 $this->location = $location;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of lng
+         */ 
+        public function getLng()
+        {
+                return $this->lng;
+        }
+
+        /**
+         * Set the value of lng
+         *
+         * @return  self
+         */ 
+        public function setLng($lng)
+        {
+                $this->lng = $lng;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of lat
+         */ 
+        public function getLat()
+        {
+                return $this->lat;
+        }
+
+        /**
+         * Set the value of lat
+         *
+         * @return  self
+         */ 
+        public function setLat($lat)
+        {
+                $this->lat = $lat;
 
                 return $this;
         }

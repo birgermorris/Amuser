@@ -35,8 +35,8 @@ if(!empty($_POST)){
         <div>
             <textarea id="image_text" cols="40" rows="4" name="image_text" placeholder="Say something about this image..."></textarea>
           </div>
-          <input type="hidden" name="filter" value="">
-            <input type="hidden" name="city" value="" id="cords">
+          <input type="hidden" name="lng" value="" id="lng">
+            <input type="hidden" name="lat" value="" id="lat">
         <div id="map"></div>
 
         <br>
@@ -45,6 +45,7 @@ if(!empty($_POST)){
     </form>
 <script src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCVPRko-3ZujwaomOO99Qqonwm2hAUeNHs"></script>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="js/functions.js"></script>
 <script src="js/script.js"></script>   
 <script type="text/javascript" src="js/geolocation.js" ></script> 
 

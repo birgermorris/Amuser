@@ -21,8 +21,8 @@
         </div>
 
         <div class="right_actions">
-        <a href="upload.php">Upload een post</a>
-        <a href="edit_profile.php">Pas gegevens aan</a>
+        <a href="upload.php">Add</a>
+        <a href="edit_profile.php">Profile</a>
         <a href="logout.php">Log out</a>
         </div>
         </nav>

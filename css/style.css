@@ -5,7 +5,7 @@
         background-size: cover;
         width: 100%;
         height: 100%;
-        font-family: arial;
+        font-family: Raleway;
     }
     
     h2 {
@@ -196,4 +196,23 @@
         grid-template-rows: 1fr [form] 1fr 1fr;
         justify-content: center;
         align-items: center;
+    }
+
+    .btn {
+        background-color:#DA4741;
+        color:white;
+        padding:5px;
+        text-decoration:none;
+        display:inline-block;
+    }
+
+    .username a:link,
+    .username a:visited,
+    .username a:hover,
+    .username a:active {
+        display: block;
+        color:black;
+        margin-top:5px;
+        font-weight: bold;
+        text-decoration:none;
     }

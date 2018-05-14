@@ -3,9 +3,17 @@
     include_once("classes/posts.class.php");
     include_once("classes/reaction.class.php");
     include_once("includes/functions.inc.php");
+    include_once("classes/hashtag.class.php");
+
     session_start();
     $user = $_SESSION['user_id'];
-    $collection = Posts::getAll();
+    
+    $postsHash = new Hashtag();
+    $postsHash->setUser_id($_SESSION['user_id']);
+    $hashtagsThatIFollow = $postsHash->getMyHashtagFollow();
+
+    $posts = new Posts();
+    $collection = $posts->getAll($hashtagsThatIFollow);
 
     if(isset($_POST['reaction']) && !empty($_POST['reaction']) && !empty($_POST["post_id"])){
         $reaction = new Reaction();
@@ -40,8 +48,8 @@
         $thisUser = $user->getUserInfo();
     ?>
     <div class="grid-item">
-        <a href="./succes.php" id="deletepost" class="btn btn-danger" data-id="<?php echo $test['id']; ?>">Delete</a>
-        <div class="">
+        <a href="./delete.php?id=<?php echo $c['id']; ?>" id="deletepost" class="btn btn-danger" data-id="<?php echo $c['id']; ?>">Delete</a>
+        <div class="postInfo">
             <div class="username"><a href="profile.php"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></a></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
             <div class="location"><?php echo $c['location']; ?></div>
@@ -82,7 +90,7 @@
 </div>
 
 
-<?php if(count(Posts::getAll()) == 20): ?>
+<?php if(count(Posts::getAll($hashtagsThatIFollow)) == 20): ?>
     <input type="hidden" id="result_no" value="20">
     <button><a href="#" id="btnLoadMore">Load More</a></button>
 <?php endif; ?>

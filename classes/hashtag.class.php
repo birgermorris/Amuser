@@ -150,5 +150,14 @@
         $result = $statement->execute();
         return $result;
         }
+
+        public function getMyHashtagFollow(){
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("SELECT hashtag from follow_hashtags, hashtags where follow_hashtags.user_id = :user_id group by hashtags.id");
+            $statement->bindParam("user_id", $this->user_id);
+            $statement->execute();
+            $result = $statement->fetchAll();
+            return $result;
+        }
     }
 ?>
