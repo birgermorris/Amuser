@@ -137,12 +137,15 @@
     
     .grid-container {
         display: grid;
-        width: 1200px;
-        margin: 0px auto;
+        width: 90%;
+        margin-left: 5%;
         grid-column-gap: 30px;
         grid-row-gap: 20px;
         grid-template-columns: auto auto auto;
+        align-content: start;
     }
+    
+    .grid-item {}
     
     .btnLoadMore {
         display: block;
@@ -168,9 +171,9 @@
     }
     
     img {
-        width: 220px;
+        width: 120px;
         text-align: center;
-        padding-top: 105px;
+        padding-top: 0px;
     }
     
     .login {

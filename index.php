@@ -51,8 +51,8 @@ $items = $post->loadMore($no);
             <div class="username"><a href="profile.php"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></a></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
         </div>
-        <div class="thumbnail" 
-        style="width:400px;height:400px;background-image:url(<?php echo $c['image']; ?>
+        <div class="img-responsive" 
+        style="width:100%;height:350px;background-image:url(<?php echo $c['image']; ?>
         );background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
         </div>
         <div class="description">    
@@ -85,6 +85,7 @@ $items = $post->loadMore($no);
     </div>    
     <?php endforeach; ?>
 </div>
+
 
 <?php if(count(Posts::getAll()) == 20): ?>
     <input type="hidden" id="result_no" value="20">
