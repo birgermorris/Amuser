@@ -93,8 +93,15 @@ include_once("db.class.php");
                         $hashtags[] = 'image_text LIKE "%'.htmlspecialchars($words[$i]["hashtag"]).'%"';
                     }
 
-            $statement = $conn->prepare("select * from posts where user_id in (10,9,8) OR " .implode(" OR ", $hashtags) . " ORDER BY upload_time DESC limit $limitposts");
+
+                    if($arrayLength <= 0){
+                        $statement = $conn->prepare("select * from posts where user_id in (10,9,8)" .implode(" OR ", $hashtags) . " ORDER BY upload_time DESC limit $limitposts");
+                    } else {
+                        $statement = $conn->prepare("select * from posts where user_id in (10,9,8) OR " .implode(" OR ", $hashtags) . " ORDER BY upload_time DESC limit $limitposts");
+                    }
+            
             //AANGEZIEN FRIENDS NOG NIET GEMAAKT IS, HARD CODED FRIEND LIST OM CODE TE DOEN WERKEN
+            
             $statement->execute();
             $result = $statement->fetchAll( PDO::FETCH_ASSOC );
             return $result;

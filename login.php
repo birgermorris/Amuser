@@ -67,6 +67,7 @@ else{
             <input type="submit" class="btnSubmit" value="Sign in">
         </form>
     </div>
+    <a href="register.php">Registreer je nu!</a>
     </section>
 </div>
 

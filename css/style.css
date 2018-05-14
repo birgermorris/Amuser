@@ -33,7 +33,7 @@
         text-align: center;
         color: whitesmoke;
         width: 70%;
-        margin-left: 15%;
+        margin:10px auto;
     }
     
     form input,
@@ -74,6 +74,9 @@
         background-color: #2A4162;
         color: white;
         width: 100%;
+    }
+
+    nav > div.container {
         display: flex;
         justify-content: space-between;
     }
@@ -91,10 +94,18 @@
         text-decoration: none;
         margin-left: 10px;
     }
+
+    .search{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
     
     .search form {
         padding: 5px;
         margin: 0px;
+        align-items: center;
+        display: flex;
     }
     
     input#search {
@@ -110,9 +121,15 @@
         text-align: center;
         display: inline;
         float: left;
-        margin-left: 80px;
+        max-width:90%;
     }
     
+    .formitem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .edit_profile label {
         font-size: 20px;
         color: #fff;
@@ -134,12 +151,55 @@
         padding: 10px;
         width: auto;
     }
-    
+
     .grid-container {
         display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
+    justify-content:space-between;
     }
+
+    .grid-item {
+        width:30%;
+        margin-top:10px;
+    }
+
+    .react form{
+        background-color: #2A4162;
+        padding: 0em 0em 0em 0em;
+        margin: px;
+        grid-column: form;
+        grid-row: form;
+        text-align: center;
+        color: whitesmoke;
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    .container{
+        max-width:960px;
+        margin:0px auto;
+    }
+
+    @media (max-width:767px){
+        .grid-container {
+            display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        }
+
+        .grid-item{
+            width:90%;
+        }
+
+        nav > div.container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+    
     
     .grid-item {}
     

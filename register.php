@@ -11,7 +11,7 @@ if (!empty($_POST)){
         if($user->register()){
             session_start();
             $_SESSION['email'] = $user->getEmail();
-            header('location: index.php');
+            header('location: login.php');
         }
         }
         catch (Exception $e) {
