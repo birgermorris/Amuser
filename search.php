@@ -95,7 +95,7 @@
 <?php if(count($results) == 0): ?>
 <p> Er zijn helaas geen resultaten gevonden</p>
 <?php endif; ?>
-
+<div class="grid-container">
     <?php foreach ($results as $result): ?>
     <?php 
         $user = new User();
@@ -108,13 +108,14 @@
             <div class="username"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></div>
             <div class="timeAgo"><?php echo timing($result['upload_time']); ?></div>
         </div>
-        <div class="thumbnail" style="width:400px;height:400px;background-image:url(<?php echo $result['image']; ?>);background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
+        <div class="thumbnail" style="width:100%;height:350px;background-image:url(<?php echo $result['image']; ?>);background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
         </div>
         <div class="description">    
             <p><?php echo $result['image_text']; ?></p>
         </div>
     </div>    
     <?php endforeach; ?>
+</div>
 </div>
 </body>
 </html>

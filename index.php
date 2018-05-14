@@ -54,7 +54,7 @@
         <div class="postInfo">
             <div class="username"><a href="profile.php"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></a></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
-            <div class="location">LOCATIE</div>
+            <div class="location"></div>
         </div>
         <div class="img-responsive" 
         style="width:100%;height:350px;background-image:url(<?php echo $c['image']; ?>
