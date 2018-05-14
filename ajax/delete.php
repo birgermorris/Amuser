@@ -8,3 +8,5 @@ $p = new Post();
 
 /* Geef als parameter mee wat er naar deze pagina gepost is (= 'id') */
 /*$p->deletePost($user_id);*/
+header('Content-type: application/json');
+echo json_encode($response);

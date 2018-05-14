@@ -9,7 +9,7 @@ if(!empty($_POST)){
         //$post->PhotoCheck();
         $post->setImage_text($_POST["image_text"]);
         $post->setUser_id($_SESSION["user_id"]);
-        $post->setLocation($_POST['location']);
+        $post->setLocatie = $_POST['city'];
         $post->PhotoUpload();
         header("Location: index.php");
     } catch (Exception $e) {
@@ -32,17 +32,18 @@ if(!empty($_POST)){
         <div>
             <textarea id="image_text" cols="40" rows="4" name="image_text" placeholder="Say something about this image..."></textarea>
           </div>
-        <input type="hidden" name="filter" value="">
-        <input type="text" name="location" value="" id="cords"> 
+          <input type="hidden" name="filter" value="">
+            <input type="hidden" name="city" value="" id="cords">
         <div id="map"></div>
 
         <br>
         <input type="submit" value="Upload picture" name="Upload">
         
     </form>
-    
+<script src="https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyCVPRko-3ZujwaomOO99Qqonwm2hAUeNHs"></script>    
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="js/script.js"></script>    
+<script src="js/script.js"></script>   
+<script type="text/javascript" src="js/geolocation.js" ></script> 
 
 </body>
 </html>

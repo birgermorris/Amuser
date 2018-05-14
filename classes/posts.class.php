@@ -56,13 +56,13 @@ include_once("db.class.php");
             $conn = Db::getInstance();
             $this->target_file = $this->src . preg_replace("![^a-z0-9]+!i", "_",basename($this->tmp["name"]));
             if(move_uploaded_file($this->tmp["tmp_name"], $this->target_file)){
-                $query = "insert into posts (image, image_text, upload_time, user_id, picture_location) values (:image, :image_text, :upload_time, :user_id, :picture_location) ";
+                $query = "insert into posts (image, image_text, upload_time, user_id, location) values (:image, :image_text, :upload_time, :user_id, :location) ";
                 $statement = $conn->prepare($query);
                 $statement->bindValue(':image', $this->target_file);
                 $statement->bindValue(':image_text', $this->image_text);
                 $statement->bindValue(":user_id", $this->user_id);
                 $statement->bindValue(':upload_time', date("Y-m-d H:i:s"));
-                $statement->bindValue(":picture_location",$this->PictureLocation, PDO::PARAM_STR);
+                $statement->bindValue(":location",$this->location, PDO::PARAM_STR);
                 $res = $statement->execute();
                 return $res;
             } else {
@@ -175,12 +175,5 @@ include_once("db.class.php");
                 $this->location = $location;
 
                 return $this;
-        }
-        public function Location(){
-            $conn = Db::getInstance();
-            $statement = $conn->prepare("INSERT INTO posts location VALUES :location");
-            $statement->bindValue(':location', $this->location);
-            $res = $statement->execute();
-            return $res; 
         }
     }
