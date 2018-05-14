@@ -11,9 +11,9 @@ include_once("db.class.php");
         public $imageFileType;
         public $user_id;
         public $post_id;
-        private $location;
-        private $lng;
-        private $lat;
+        public $location;
+        public $lng;
+        public $lat;
 
         /**
          * Get the value of image
@@ -56,9 +56,9 @@ include_once("db.class.php");
         }
         public function PhotoUpload(){
             $conn = Db::getInstance();
-            $this->target_file = $this->src . preg_replace("![^a-z0-9]+!i", "_",basename($this->tmp["name"]));
+            $this->target_file = $this->src . preg_replace("![^a-z0-9.]+!i", "_",basename($this->tmp["name"]));
             if(move_uploaded_file($this->tmp["tmp_name"], $this->target_file)){
-                $query = "insert into posts (image, image_text, upload_time, user_id, lat, lng) values (:image, :image_text, :upload_time, :user_id, :lat, :lng) ";
+                $query = "insert into posts (image, image_text, upload_time, user_id, lng, lat) values (:image, :image_text, :upload_time, :user_id, :lng, :lat) ";
                 $statement = $conn->prepare($query);
                 $statement->bindValue(':image', $this->target_file);
                 $statement->bindValue(':image_text', $this->image_text);
@@ -66,6 +66,7 @@ include_once("db.class.php");
                 $statement->bindValue(':upload_time', date("Y-m-d H:i:s"));
                 $statement->bindValue(":lat",$this->lat);
                 $statement->bindValue(":lng",$this->lng);
+                var_dump($query);
                 $res = $statement->execute();
                 return $res;
             } else {

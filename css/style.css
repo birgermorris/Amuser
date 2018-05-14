@@ -5,7 +5,7 @@
         background-size: cover;
         width: 100%;
         height: 100%;
-        font-family: Raleway;
+        font-family: 'Raleway', sans-serif;
     }
     
     h2 {
@@ -136,13 +136,9 @@
     }
     
     .grid-container {
-        display: grid;
-        width: 90%;
-        margin-left: 5%;
-        grid-column-gap: 30px;
-        grid-row-gap: 20px;
-        grid-template-columns: auto auto auto;
-        align-content: start;
+        display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     }
     
     .grid-item {}

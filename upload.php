@@ -9,7 +9,8 @@ if(!empty($_POST)){
         //$post->PhotoCheck();
         $post->setImage_text($_POST["image_text"]);
         $post->setUser_id($_SESSION["user_id"]);
-        $post->setLocatie = $_POST['city'];
+        $post->setLat($_POST['lat']);
+        $post->setLng($_POST['lng']);
         $post->PhotoUpload();
         header("Location: index.php");
     } catch (Exception $e) {
