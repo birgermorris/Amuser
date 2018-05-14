@@ -70,13 +70,13 @@ function error(msg) {
 
     // console.log(arguments);
 }
-/*
+
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
 } else {
     error('not supported');
 }
-*/
+
 $("#load").click(function() {
     Loadmore();
 });
@@ -96,7 +96,7 @@ function Loadmore() {
         }
     })
 }
-/*
+
 (function() {
     var App = {
         errorFunction: function() {
@@ -153,4 +153,3 @@ function Loadmore() {
     }
     App.initialize();
 }());
-*/

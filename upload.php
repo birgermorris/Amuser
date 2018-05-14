@@ -9,7 +9,7 @@ if(!empty($_POST)){
         //$post->PhotoCheck();
         $post->setImage_text($_POST["image_text"]);
         $post->setUser_id($_SESSION["user_id"]);
-        $post->setPictureLocation($_POST['city']);
+        $post->setLocation($_POST['location']);
         $post->PhotoUpload();
         header("Location: index.php");
     } catch (Exception $e) {
@@ -33,7 +33,7 @@ if(!empty($_POST)){
             <textarea id="image_text" cols="40" rows="4" name="image_text" placeholder="Say something about this image..."></textarea>
           </div>
         <input type="hidden" name="filter" value="">
-        <input type="hidden" name="city" value="" id="cords"> 
+        <input type="text" name="location" value="" id="cords"> 
         <div id="map"></div>
 
         <br>

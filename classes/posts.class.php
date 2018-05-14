@@ -11,7 +11,7 @@ include_once("db.class.php");
         public $imageFileType;
         public $user_id;
         public $post_id;
-        public $PictureLocation;
+        private $location;
 
         /**
          * Get the value of image
@@ -155,5 +155,32 @@ include_once("db.class.php");
                 $this->PictureLocation = $PictureLocation;
 
                 return $this;
+        }
+
+        /**
+         * Get the value of location
+         */ 
+        public function getLocation()
+        {
+                return $this->location;
+        }
+
+        /**
+         * Set the value of location
+         *
+         * @return  self
+         */ 
+        public function setLocation($location)
+        {
+                $this->location = $location;
+
+                return $this;
+        }
+        public function Location(){
+            $conn = Db::getInstance();
+            $statement = $conn->prepare("INSERT INTO posts location VALUES :location");
+            $statement->bindValue(':location', $this->location);
+            $res = $statement->execute();
+            return $res; 
         }
     }
