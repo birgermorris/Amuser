@@ -74,16 +74,17 @@ include_once("db.class.php");
             }
         }
         
-        public function deletePost($id){
+        public function deletePost($id, $userid){
             $conn = Db::getInstance();
-            $statement = $conn->prepare("DELETE FROM posts where id = :id");
+            $statement = $conn->prepare("DELETE FROM posts where id = :id and user_id = :user_id");
             $statement->bindParam(":id", $id);
+            $statement->bindParam(":user_id", $userid);
             $result = $statement->execute();
             return $result;
         }
 
         // posts limit by 20 on the index page
-        public static function getAll($words) {
+        public static function getAll($words, $myuserid) {
             $conn = Db::getInstance();
             $limitposts = 20;
                 $hashtags = array();
@@ -95,10 +96,12 @@ include_once("db.class.php");
 
 
                     if($arrayLength <= 0){
-                        $statement = $conn->prepare("select * from posts where user_id in (10,9,8)" .implode(" OR ", $hashtags) . " ORDER BY upload_time DESC limit $limitposts");
+                        $statement = $conn->prepare("select * from posts where user_id in (10,9,8, :user_id)" .implode(" OR ", $hashtags) . " ORDER BY upload_time DESC limit $limitposts");
                     } else {
-                        $statement = $conn->prepare("select * from posts where user_id in (10,9,8) OR " .implode(" OR ", $hashtags) . " ORDER BY upload_time DESC limit $limitposts");
+                        $statement = $conn->prepare("select * from posts where user_id in (10,9,8, :user_id) OR " .implode(" OR ", $hashtags) . " ORDER BY upload_time DESC limit $limitposts");
                     }
+
+        $statement->bindValue(":user_id", $myuserid);
             
             //AANGEZIEN FRIENDS NOG NIET GEMAAKT IS, HARD CODED FRIEND LIST OM CODE TE DOEN WERKEN
             

@@ -1,5 +1,6 @@
 <?php
-
+    include_once("includes/loginCheck.php");
+    
 
 ?><!DOCTYPE html>
 <html lang="en">

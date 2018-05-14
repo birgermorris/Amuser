@@ -13,7 +13,7 @@
     $hashtagsThatIFollow = $postsHash->getMyHashtagFollow();
 
     $posts = new Posts();
-    $collection = $posts->getAll($hashtagsThatIFollow);
+    $collection = $posts->getAll($hashtagsThatIFollow, $_SESSION["user_id"]);
 
     if(isset($_POST['reaction']) && !empty($_POST['reaction']) && !empty($_POST["post_id"])){
         $reaction = new Reaction();
@@ -48,7 +48,9 @@
         $thisUser = $user->getUserInfo();
     ?>
     <div class="grid-item">
+        <?php if($c["user_id"] == $_SESSION["user_id"]): ?>
         <a href="./delete.php?id=<?php echo $c['id']; ?>" id="deletepost" class="btn btn-danger" data-id="<?php echo $c['id']; ?>">Delete</a>
+        <?php endif; ?>
         <div class="postInfo">
             <div class="username"><a href="profile.php"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></a></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
@@ -90,7 +92,7 @@
 </div>
 
 
-<?php if(count(Posts::getAll($hashtagsThatIFollow)) == 20): ?>
+<?php if(count(Posts::getAll($hashtagsThatIFollow, $_SESSION["user_id"])) == 20): ?>
     <input type="hidden" id="result_no" value="20">
     <button><a href="#" id="btnLoadMore">Load More</a></button>
 <?php endif; ?>

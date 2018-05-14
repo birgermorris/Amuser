@@ -77,20 +77,32 @@
 <?php include_once("includes/header.inc.php"); ?>
 <?php include_once("includes/error.inc.php"); ?>
 
+<div class="container">
+    <div class="flexSearch">
+        <div>
     <h1>Zoeken: <?php echo $_GET["search"]; ?></h1>
-    <a href="search.php?search=<?php echo urlencode($_GET["search"]); ?>">Zoeken</a><a href="search.php?search=<?php echo urlencode($_GET["search"]); ?>&location=true">Locatie</a>
+    <div class="zoekBtn">
+        <a href="search.php?search=<?php echo urlencode($_GET["search"]); ?>">Zoek posts</a><a href="search.php?search=<?php echo urlencode($_GET["search"]); ?>&location=true">Zoek locatie</a>
+</div>
+</div>
     <?php if(isHashtag($_GET["search"]) && $hashfollow == false ): ?>
-    <form action="search.php?search=<?php echo urlencode($_GET["search"]); ?>" method="post"><input type="hidden" name="search" id="search" value="<?php echo $_GET["search"]; ?>"><input type="submit" class="searchbutton" name="followHashtag" value="Follow"></form>
+    <form action="search.php?search=<?php echo urlencode($_GET["search"]); ?>" method="post" class="follow"><input type="hidden" name="search" id="search" value="<?php echo $_GET["search"]; ?>"><input type="submit" class="searchbutton" name="followHashtag" value="Follow"></form>
     <?php elseif(isHashtag($_GET["search"]) && $hashfollow == true): ?>
-    <form action="search.php?search=<?php echo urlencode($_GET["search"]); ?>" method="post"><input type="hidden" name="hashtag_id" id="hashtag_id" value="<?php echo $uFollowHashinfo['id']; ?>"><input type="submit" class="searchbutton" name="unfollowHashtag" value="Unfollow"></form>
+    <form action="search.php?search=<?php echo urlencode($_GET["search"]); ?>" method="post" class="follow"><input type="hidden" name="hashtag_id" id="hashtag_id" value="<?php echo $uFollowHashinfo['id']; ?>"><input type="submit" class="searchbutton" name="unfollowHashtag" value="Unfollow"></form>
     <?php endif; ?>
-    
+    </div>
+
+<?php if(count($results) == 0): ?>
+<p> Er zijn helaas geen resultaten gevonden</p>
+<?php endif; ?>
+
     <?php foreach ($results as $result): ?>
     <?php 
         $user = new User();
         $user->setUser_id($result['user_id']);
         $thisUser = $user->getUserInfo();
     ?>
+
     <div class="grid-item">
     <div class="">
             <div class="username"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></div>
@@ -103,5 +115,6 @@
         </div>
     </div>    
     <?php endforeach; ?>
+</div>
 </body>
 </html>

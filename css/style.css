@@ -35,6 +35,19 @@
         width: 70%;
         margin:10px auto;
     }
+
+    .zoekBtn a:link,
+    .zoekBtn a:visited,
+    .zoekBtn a:hover,
+    .zoekBtn a:active {
+        background-color:#DA4741;
+        color:white;
+        padding:5px;
+        text-decoration:none;
+        margin-right:10px;
+        display:inline-block;
+        margin-bottom:5px;
+    }
     
     form input,
     form textarea {
@@ -164,10 +177,32 @@
         margin-top:10px;
     }
 
+    form.follow {
+        background-color:transparent;
+        padding: 0em 0em 0em 0em;
+        margin: 5px;
+        grid-column: form;
+        grid-row: form;
+        text-align: right;
+        color: whitesmoke;
+        width: none;
+        margin: 10px auto;
+    }
+
+    form.follow input {
+        background-color: #DA4741;
+        color:white;
+    }
+
+    .flexSearch {
+        display: flex;
+        flex-direction: row;
+    }
+
     .react form{
         background-color: #2A4162;
         padding: 0em 0em 0em 0em;
-        margin: px;
+        margin: 5px;
         grid-column: form;
         grid-row: form;
         text-align: center;
@@ -177,11 +212,11 @@
     }
 
     .container{
-        max-width:960px;
+        max-width:1200px;
         margin:0px auto;
     }
 
-    @media (max-width:767px){
+    @media (max-width:780px){
         .grid-container {
             display: flex;
         flex-direction: column;
@@ -189,14 +224,27 @@
         align-items: center;
         }
 
+        form.follow {
+            text-align:center;
+        }
+
         .grid-item{
             width:90%;
+        }
+
+        .flexSearch {
+            display: flex;
+            flex-direction: column;
         }
 
         nav > div.container {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        .container {
+            margin:5px;
         }
     }
     
