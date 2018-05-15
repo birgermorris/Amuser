@@ -40,6 +40,7 @@
 <body>
 <?php include_once("includes/header.inc.php"); ?>
 <?php include_once("includes/error.inc.php"); ?>
+<div class="container">
 <div class="grid-container">
     <?php foreach($collection as $c): ?>
     <?php 
@@ -52,7 +53,7 @@
         <a href="./delete.php?id=<?php echo $c['id']; ?>" id="deletepost" class="btn btn-danger" data-id="<?php echo $c['id']; ?>">Delete</a>
         <?php endif; ?>
         <div class="postInfo">
-            <div class="username"><a href="profile.php"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></a></div>
+            <div class="username"><a href="profile.php?user=<?php echo $c["user_id"]; ?>"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></a></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
             <div class="location"></div>
         </div>
@@ -89,6 +90,7 @@
         </div>
     </div>    
     <?php endforeach; ?>
+</div>
 </div>
 
 
