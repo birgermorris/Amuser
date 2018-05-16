@@ -108,7 +108,7 @@
             <div class="username"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></div>
             <div class="timeAgo"><?php echo timing($result['upload_time']); ?></div>
         </div>
-        <div class="thumbnail" style="width:100%;height:350px;background-image:url(<?php echo $result['image']; ?>);background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
+        <div class="thumbnail filter<?php echo $result['filter_id']; ?>" style="width:100%;height:350px;background-image:url(<?php echo $result['image']; ?>);background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
         </div>
         <div class="description">    
             <p><?php echo $result['image_text']; ?></p>

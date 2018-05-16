@@ -46,7 +46,7 @@
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
             <div class="location"></div>
         </div>
-        <div class="img-responsive" 
+        <div class="img-responsive filter<?php echo $c["filter_id"]; ?>" 
         style="width:100%;height:350px;background-image:url(<?php echo $c['image']; ?>
         );background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
         </div>

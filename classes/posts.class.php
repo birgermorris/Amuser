@@ -14,6 +14,7 @@ include_once("db.class.php");
         public $location;
         public $lng;
         public $lat;
+        public $filter_id;
 
         /**
          * Get the value of image
@@ -58,7 +59,7 @@ include_once("db.class.php");
             $conn = Db::getInstance();
             $this->target_file = $this->src . preg_replace("![^a-z0-9.]+!i", "_",basename($this->tmp["name"]));
             if(move_uploaded_file($this->tmp["tmp_name"], $this->target_file)){
-                $query = "insert into posts (image, image_text, upload_time, user_id, lng, lat) values (:image, :image_text, :upload_time, :user_id, :lng, :lat) ";
+                $query = "insert into posts (image, image_text, upload_time, user_id, lng, lat, filter_id) values (:image, :image_text, :upload_time, :user_id, :lng, :lat, :filter_id) ";
                 $statement = $conn->prepare($query);
                 $statement->bindValue(':image', $this->target_file);
                 $statement->bindValue(':image_text', $this->image_text);
@@ -66,6 +67,7 @@ include_once("db.class.php");
                 $statement->bindValue(':upload_time', date("Y-m-d H:i:s"));
                 $statement->bindValue(":lat",$this->lat);
                 $statement->bindValue(":lng",$this->lng);
+                $statement->bindValue(":filter_id",$this->filter_id);
                 var_dump($query);
                 $res = $statement->execute();
                 return $res;
@@ -252,6 +254,26 @@ include_once("db.class.php");
         public function setLat($lat)
         {
                 $this->lat = $lat;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of filter_id
+         */ 
+        public function getFilter_id()
+        {
+                return $this->filter_id;
+        }
+
+        /**
+         * Set the value of filter_id
+         *
+         * @return  self
+         */ 
+        public function setFilter_id($filter_id)
+        {
+                $this->filter_id = $filter_id;
 
                 return $this;
         }
