@@ -26,6 +26,7 @@
         header('Location: index.php');
     }
 
+    //wanneer je op unfollow klinkt (submit)
     if(isset($_POST["unfollowHashtag"])){
         $hashtag = new Hashtag();
         $hashtag->setHashtag_id($_POST["hashtag_id"]);
@@ -33,10 +34,14 @@
         $hashtag->unfollowHashtag();
     }
 
+    //Wanneer er op followHashtag is geklikt
+    // $_POST komt uit dit form element in html
+    // isset($_POST["followHashtag"] is wanneer op follow hashtag is geklikt
     if(!empty($_POST["search"])){
     if(isHashtag($_POST["search"]) && isset($_POST["followHashtag"])){
         $hashtag = new Hashtag();
         $hashtag->setHashtag($_POST['search']);
+        //als hashtag bestaat in database tabel $hashtags
         if($hashtag->exists()){
             $hashtagInfo = $hashtag->getHashtagInfo(); 
             $hashtag->setHashtag_id($hashtagInfo["id"]);
@@ -51,10 +56,13 @@
         }
     }};
 
+    //Checken of het een hashtag is en checken of de gebruiker deze al volgt.
     if(isHashtag($_GET["search"])){
         $uFollowsHashtag = new Hashtag();
         $uFollowsHashtag->setHashtag($_GET["search"]);
+        //Kijken of de hashtag in de grote tabel hashtags al bestaat
         if($uFollowsHashtag->exists()){
+            //Info binnenhalen & checken of de gebruiker het volgt.
             $uFollowHashinfo = $uFollowsHashtag->getHashtagInfo();
             $uFollowsHashtag->setHashtag_id($uFollowHashinfo["id"]);
             $uFollowsHashtag->setUser_id($_SESSION["user_id"]);
@@ -71,7 +79,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
-    <title>Zoeken: <?php echo $_GET["search"]; ?></title>
+    <title>Zoeken: <?php echo htmlspecialchars($_GET["search"]); ?></title>
 </head>
 <body>
 <?php include_once("includes/header.inc.php"); ?>
@@ -80,7 +88,7 @@
 <div class="container">
     <div class="flexSearch">
         <div>
-    <h1>Zoeken: <?php echo $_GET["search"]; ?></h1>
+    <h1>Zoeken: <?php echo htmlspecialchars($_GET["search"]); ?></h1>
     <div class="zoekBtn">
         <a href="search.php?search=<?php echo urlencode($_GET["search"]); ?>">Zoek posts</a><a href="search.php?search=<?php echo urlencode($_GET["search"]); ?>&location=true">Zoek locatie</a>
 </div>
@@ -105,13 +113,13 @@
 
     <div class="grid-item">
     <div class="">
-            <div class="username"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></div>
+            <div class="username"><?php echo htmlspecialchars($thisUser["firstname"]) . " " . htmlspecialchars($thisUser["lastname"]) ?></div>
             <div class="timeAgo"><?php echo timing($result['upload_time']); ?></div>
         </div>
         <div class="thumbnail filter<?php echo $result['filter_id']; ?>" style="width:100%;height:350px;background-image:url(<?php echo $result['image']; ?>);background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
         </div>
         <div class="description">    
-            <p><?php echo $result['image_text']; ?></p>
+            <p><?php echo htmlspecialchars($result['image_text']); ?></p>
         </div>
     </div>    
     <?php endforeach; ?>

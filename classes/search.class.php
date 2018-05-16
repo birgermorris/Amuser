@@ -35,6 +35,7 @@ Class Search {
 
     public function searchLocation($lat, $lng) {
         $conn = Db::getInstance();
+        //select *, een nieuw veldje distance  van de tabel posts. Geeft enkel de posts die Minder dan 3 km ver zijn.
         $statement = $conn->prepare("SELECT *, ( 3959 * acos( cos( radians(:lat) ) * cos( radians( lat ) ) * 
         cos( radians( lng ) - radians(:lng) ) + sin( radians(:lat) ) * 
         sin( radians( lat ) ) ) ) AS distance FROM posts HAVING

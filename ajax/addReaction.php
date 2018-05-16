@@ -20,7 +20,7 @@ if(!empty($_POST['reaction']) && !empty($_POST['dataid']))
         $reaction->create();
         $response['status'] = 'success';
         $response['message'] = "Update successful";
-        $response['text'] = $_POST['reaction'];
+        $response['text'] = htmlspecialchars($_POST['reaction']);
         $response['dataid'] = $_POST['dataid'];
         $user->setUser_id($_SESSION['user_id']);
         $userinfo = $user->getUserInfo();

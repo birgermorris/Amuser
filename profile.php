@@ -32,7 +32,7 @@
             $thisUser = $user->getUserInfo();
         }
     ?>
-    <h2><?php echo $thisUser['firstname'] . " " . $thisUser['lastname']; ?></h2>
+    <h2><?php echo htmlspecialchars($thisUser['firstname']) . " " . htmlspecialchars($thisUser['lastname']); ?></h2>
     <b>Bio:</b>
     <p><?php $text = preg_replace('/(?:^|\s)#(\w+)/', ' <a href="search.php?search=%23$1">#$1</a>', $thisUser['bio']); echo $text; ?></p>
 </div>
@@ -51,7 +51,7 @@
         );background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
         </div>
         <div class="description">    
-            <p><?php echo $c['image_text']; ?></p>
+            <p><?php echo htmlspecialchars($c['image_text']); ?></p>
         </div>
     </div>
     <?php endforeach; ?>

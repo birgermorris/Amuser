@@ -62,7 +62,7 @@
         );background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
         </div>
         <div class="description">    
-            <p><?php echo $c['image_text']; ?></p>
+            <p><?php echo htmlspecialchars($c['image_text']); ?></p>
         </div>
         <div class="reactions" data-id="<?php echo $c['id']?>">
         <?php
@@ -77,7 +77,7 @@
             $reactionUserData = $reactionUser->getUserInfo();
         ?>
         <p>
-        <?php echo $reactionUserData["firstname"] . " " . $reactionUserData["lastname"] . ": " . $postReaction["reaction_text"]; ?>
+        <?php echo htmlspecialchars($reactionUserData["firstname"]) . " " . htmlspecialchars($reactionUserData["lastname"]) . ": " . htmlspecialchars($postReaction["reaction_text"]); ?>
         </p>
         <?php endforeach; ?>
          </div>
