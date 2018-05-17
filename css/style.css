@@ -33,20 +33,20 @@
         text-align: center;
         color: whitesmoke;
         width: 70%;
-        margin:10px auto;
+        margin: 10px auto;
     }
-
+    
     .zoekBtn a:link,
     .zoekBtn a:visited,
     .zoekBtn a:hover,
     .zoekBtn a:active {
-        background-color:#DA4741;
-        color:white;
-        padding:5px;
-        text-decoration:none;
-        margin-right:10px;
-        display:inline-block;
-        margin-bottom:5px;
+        background-color: #DA4741;
+        color: white;
+        padding: 5px;
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block;
+        margin-bottom: 5px;
     }
     
     form input,
@@ -88,8 +88,8 @@
         color: white;
         width: 100%;
     }
-
-    nav > div.container {
+    
+    nav>div.container {
         display: flex;
         justify-content: space-between;
     }
@@ -107,8 +107,8 @@
         text-decoration: none;
         margin-left: 10px;
     }
-
-    .search{
+    
+    .search {
         display: flex;
         justify-content: center;
         align-content: center;
@@ -134,7 +134,7 @@
         text-align: center;
         display: inline;
         float: left;
-        max-width:90%;
+        max-width: 90%;
     }
     
     .formitem {
@@ -142,7 +142,7 @@
         flex-direction: column;
         align-items: center;
     }
-
+    
     .edit_profile label {
         font-size: 20px;
         color: #fff;
@@ -164,21 +164,21 @@
         padding: 10px;
         width: auto;
     }
-
+    
     .grid-container {
         display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content:space-between;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
-
+    
     .grid-item {
-        width:30%;
-        margin-top:10px;
+        width: 30%;
+        margin-top: 10px;
     }
-
+    
     form.follow {
-        background-color:transparent;
+        background-color: transparent;
         padding: 0em 0em 0em 0em;
         margin: 5px;
         grid-column: form;
@@ -188,18 +188,18 @@
         width: none;
         margin: 10px auto;
     }
-
+    
     form.follow input {
         background-color: #DA4741;
-        color:white;
+        color: white;
     }
-
+    
     .flexSearch {
         display: flex;
         flex-direction: row;
     }
-
-    .react form{
+    
+    .react form {
         background-color: #2A4162;
         padding: 0em 0em 0em 0em;
         margin: 5px;
@@ -210,44 +210,64 @@
         width: 100%;
         margin: 10px auto;
     }
-
-    .container{
-        max-width:1200px;
-        margin:0px auto;
+    
+    .container {
+        max-width: 1200px;
+        margin: 0px auto;
     }
-
-    @media (max-width:780px){
+    
+    img.imgPreview,
+    img.imageFilter {
+        width: auto;
+    }
+    
+    .filters {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .filters img {
+        margin-right: 10px;
+    }
+    
+    #upload {
+        color: #2A4162;
+        background-color: aliceblue;
+        text-align: center;
+    }
+    
+    #upload input {
+        background-color: #2A4162;
+        color: white;
+        text-align: center;
+    }
+    
+    @media (max-width:780px) {
         .grid-container {
             display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        align-items: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-items: center;
         }
-
         form.follow {
-            text-align:center;
+            text-align: center;
         }
-
-        .grid-item{
-            width:90%;
+        .grid-item {
+            width: 90%;
         }
-
         .flexSearch {
             display: flex;
             flex-direction: column;
         }
-
-        nav > div.container {
+        nav>div.container {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
-
         .container {
-            margin:5px;
+            margin: 5px;
         }
     }
-    
     
     .grid-item {}
     
@@ -301,22 +321,22 @@
         justify-content: center;
         align-items: center;
     }
-
+    
     .btn {
-        background-color:#DA4741;
-        color:white;
-        padding:5px;
-        text-decoration:none;
-        display:inline-block;
+        background-color: #DA4741;
+        color: white;
+        padding: 5px;
+        text-decoration: none;
+        display: inline-block;
     }
-
+    
     .username a:link,
     .username a:visited,
     .username a:hover,
     .username a:active {
         display: block;
-        color:black;
-        margin-top:5px;
+        color: black;
+        margin-top: 5px;
         font-weight: bold;
-        text-decoration:none;
+        text-decoration: none;
     }

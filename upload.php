@@ -31,29 +31,15 @@ $allFilters = $filter->getFilters();
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        img.imgPreview, img.imageFilter {
-            width:auto;
-        }
 
-        .filters {
-            display:flex;
-            flex-wrap:wrap;
-        }
-
-        .filters img {
-            margin-right:10px;
-        }
-        </style>
 </head>
 <body>
 <?php include_once("includes/header.inc.php"); ?>
 <?php include_once("includes/error.inc.php"); ?>
-		<form action="upload.php" method="post" enctype="multipart/form-data">
+		<form action="upload.php" method="post" enctype="multipart/form-data" id="upload">
         Select image to upload:
         <input type="file" name="fileToUpload" id="fileToUpload">
         <br>
-<<<<<<< HEAD
         <div class="filters">
             <img src="" alt="" class="_1977">
             <img src="" alt="" class="aden">
@@ -64,9 +50,8 @@ $allFilters = $filter->getFilters();
             <img src="" alt="" class="nashville">
             <img src="" alt="" class="willow">
             <img src="" alt="" class="walden">
-            <img src="" alt="" class="toaster"">
+            <img src="" alt="" class="toaster">
 
-=======
         <div style="text-align:center">
         <img class="imgPreview" style="height:auto; max-height:400px; max-width:100%;">
     </div>
@@ -74,7 +59,6 @@ $allFilters = $filter->getFilters();
         <?php foreach($allFilters as $f): ?>
             <img style="height:50px; max-width:100%;" class="imageFilter filter<?php echo $f["filter_number"]; ?>" data-id="<?php echo $f["filter_number"]; ?>">
 <?php endforeach; ?>
->>>>>>> f3464f060b9b74c0e7d4073405f55700cb08aee7
         </div>
         <div>
             <textarea id="image_text" cols="40" rows="4" name="image_text" placeholder="Say something about this image..."></textarea>
