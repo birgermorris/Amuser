@@ -31,27 +31,28 @@ $allFilters = $filter->getFilters();
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        img.imgPreview, img.imageFilter {
+            width:auto;
+        }
 
+        .filters {
+            display:flex;
+            flex-wrap:wrap;
+        }
+
+        .filters img {
+            margin-right:10px;
+        }
+        </style>
 </head>
 <body>
 <?php include_once("includes/header.inc.php"); ?>
 <?php include_once("includes/error.inc.php"); ?>
-		<form action="upload.php" method="post" enctype="multipart/form-data" id="upload">
+		<form action="upload.php" method="post" enctype="multipart/form-data">
         Select image to upload:
         <input type="file" name="fileToUpload" id="fileToUpload">
         <br>
-        <div class="filters">
-            <img src="" alt="" class="_1977">
-            <img src="" alt="" class="aden">
-            <img src="" alt="" class="brannan">
-            <img src="" alt="" class="brooklyn">
-            <img src="" alt="" class="clarendon">
-            <img src="" alt="" class="earlybird">
-            <img src="" alt="" class="nashville">
-            <img src="" alt="" class="willow">
-            <img src="" alt="" class="walden">
-            <img src="" alt="" class="toaster">
-
         <div style="text-align:center">
         <img class="imgPreview" style="height:auto; max-height:400px; max-width:100%;">
     </div>
