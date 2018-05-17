@@ -68,7 +68,6 @@ include_once("db.class.php");
                 $statement->bindValue(":lat",$this->lat);
                 $statement->bindValue(":lng",$this->lng);
                 $statement->bindValue(":filter_id",$this->filter_id);
-                var_dump($query);
                 $res = $statement->execute();
                 return $res;
             } else {
