@@ -1,20 +1,20 @@
 <?php 
 include_once("db.class.php");
     Class Posts {
-        public $src = "data/post/";
-        public $tmp;
-        public $image;
-        public $image_text;
-        public $type;
-        public $uploadfile;
-        public $target_file;
-        public $imageFileType;
-        public $user_id;
-        public $post_id;
-        public $location;
-        public $lng;
-        public $lat;
-        public $filter_id;
+        private $src = "data/post/";
+        private $tmp;
+        private $image;
+        private $image_text;
+        private $type;
+        private $uploadfile;
+        private $target_file;
+        private $imageFileType;
+        private $user_id;
+        private $post_id;
+        private $location;
+        private $lng;
+        private $lat;
+        private $filter_id;
 
         /**
          * Get the value of image
@@ -68,6 +68,7 @@ include_once("db.class.php");
                 $statement->bindValue(":lat",$this->lat);
                 $statement->bindValue(":lng",$this->lng);
                 $statement->bindValue(":filter_id",$this->filter_id);
+                var_dump($query);
                 $res = $statement->execute();
                 return $res;
             } else {
@@ -273,6 +274,126 @@ include_once("db.class.php");
         public function setFilter_id($filter_id)
         {
                 $this->filter_id = $filter_id;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of tmp
+         */ 
+        public function getTmp()
+        {
+                return $this->tmp;
+        }
+
+        /**
+         * Set the value of tmp
+         *
+         * @return  self
+         */ 
+        public function setTmp($tmp)
+        {
+                $this->tmp = $tmp;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of src
+         */ 
+        public function getSrc()
+        {
+                return $this->src;
+        }
+
+        /**
+         * Set the value of src
+         *
+         * @return  self
+         */ 
+        public function setSrc($src)
+        {
+                $this->src = $src;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of type
+         */ 
+        public function getType()
+        {
+                return $this->type;
+        }
+
+        /**
+         * Set the value of type
+         *
+         * @return  self
+         */ 
+        public function setType($type)
+        {
+                $this->type = $type;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of uploadfile
+         */ 
+        public function getUploadfile()
+        {
+                return $this->uploadfile;
+        }
+
+        /**
+         * Set the value of uploadfile
+         *
+         * @return  self
+         */ 
+        public function setUploadfile($uploadfile)
+        {
+                $this->uploadfile = $uploadfile;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of target_file
+         */ 
+        public function getTarget_file()
+        {
+                return $this->target_file;
+        }
+
+        /**
+         * Set the value of target_file
+         *
+         * @return  self
+         */ 
+        public function setTarget_file($target_file)
+        {
+                $this->target_file = $target_file;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of imageFileType
+         */ 
+        public function getImageFileType()
+        {
+                return $this->imageFileType;
+        }
+
+        /**
+         * Set the value of imageFileType
+         *
+         * @return  self
+         */ 
+        public function setImageFileType($imageFileType)
+        {
+                $this->imageFileType = $imageFileType;
 
                 return $this;
         }

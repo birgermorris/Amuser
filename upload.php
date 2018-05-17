@@ -7,8 +7,8 @@ include_once("classes/filter.class.php");
 if(!empty($_POST)){
     try{
         $post = new Posts();
-        $post->tmp = $_FILES["fileToUpload"];
-        //$post->PhotoCheck();
+        $post->setTmp($_FILES["fileToUpload"]);
+        //$post->PhotoCheck(); 
         $post->setImage_text($_POST["image_text"]);
         $post->setUser_id($_SESSION["user_id"]);
         $post->setLat($_POST['lat']);

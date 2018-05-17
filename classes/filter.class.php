@@ -1,7 +1,7 @@
 <?php 
 include_once("db.class.php");
     Class Filter {
-        public $filter_number;
+        private $filter_number;
 
         /**
          * Get the value of filter_number

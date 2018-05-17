@@ -1,10 +1,10 @@
 <?php
     include_once("db.class.php");
     Class Hashtag {
-        public $hashtag_id;
-        public $user_id;
-        public $hashtag;
-        public $follow_hashtag_id;
+        private $hashtag_id;
+        private $user_id;
+        private $hashtag;
+        private $follow_hashtag_id;
 
         
 
