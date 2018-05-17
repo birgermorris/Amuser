@@ -40,6 +40,7 @@
 <body>
 <?php include_once("includes/header.inc.php"); ?>
 <?php include_once("includes/error.inc.php"); ?>
+<div class="container">
 <div class="grid-container">
     <?php foreach($collection as $c): ?>
     <?php 
@@ -52,16 +53,16 @@
         <a href="./delete.php?id=<?php echo $c['id']; ?>" id="deletepost" class="btn btn-danger" data-id="<?php echo $c['id']; ?>">Delete</a>
         <?php endif; ?>
         <div class="postInfo">
-            <div class="username"><a href="profile.php"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></a></div>
+            <div class="username"><a href="profile.php?user=<?php echo $c["user_id"]; ?>"><?php echo $thisUser["firstname"] . " " . $thisUser["lastname"] ?></a></div>
             <div class="timeAgo"><?php echo timing($c['upload_time']); ?></div>
-            <div class="location">LOCATIE</div>
+            <div class="location"></div>
         </div>
-        <div class="img-responsive" 
+        <div class="img-responsive filter<?php echo $c["filter_id"]; ?>" 
         style="width:100%;height:350px;background-image:url(<?php echo $c['image']; ?>
         );background-repeat:no-repeat;background-size:cover;background-position:50% 50%;">
         </div>
         <div class="description">    
-            <p><?php echo $c['image_text']; ?></p>
+            <p><?php echo htmlspecialchars($c['image_text']); ?></p>
         </div>
         <div class="reactions" data-id="<?php echo $c['id']?>">
         <?php
@@ -76,7 +77,7 @@
             $reactionUserData = $reactionUser->getUserInfo();
         ?>
         <p>
-        <?php echo $reactionUserData["firstname"] . " " . $reactionUserData["lastname"] . ": " . $postReaction["reaction_text"]; ?>
+        <?php echo htmlspecialchars($reactionUserData["firstname"]) . " " . htmlspecialchars($reactionUserData["lastname"]) . ": " . htmlspecialchars($postReaction["reaction_text"]); ?>
         </p>
         <?php endforeach; ?>
          </div>
@@ -89,6 +90,7 @@
         </div>
     </div>    
     <?php endforeach; ?>
+</div>
 </div>
 
 

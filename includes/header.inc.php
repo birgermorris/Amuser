@@ -9,7 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://cssgram-cssgram.netdna-ssl.com/cssgram.min.css">
+=======
+    <link rel="stylesheet" href="css/filters.css">
+>>>>>>> f3464f060b9b74c0e7d4073405f55700cb08aee7
     <title>Nav</title>
 </head>
 <body>
@@ -25,7 +29,7 @@
 
         <div class="right_actions">
         <a href="upload.php">Add</a>
-        <a href="edit_profile.php">Profile</a>
+        <a href="edit_profile.php">Edit profile</a>
         <a href="logout.php">Log out</a>
         </div>
 </div>
