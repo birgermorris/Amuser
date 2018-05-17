@@ -114,7 +114,7 @@ include_once("db.class.php");
 
         public function getPostsByUser() {
                 $conn = Db::getInstance();
-                $statement = $conn->prepare("select * from posts where user_id = :user_id ORDER BY upload_time DESC");
+        $statement = $conn->prepare("select * from posts where user_id = :user_id ORDER BY upload_time DESC");
                 $statement->bindValue(":user_id", $this->user_id);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -123,7 +123,7 @@ include_once("db.class.php");
 
         public function getMine() {
                 $conn = Db::getInstance();
-                $statement = $conn->prepare("select * from posts  where user_id = :user_id ORDER BY upload_time DESC");
+                $statement = $conn->prepare("select * from posts ORDER BY upload_time DESC where user_id = :user_id");
                 $statement->bindValue(":user_id", $this->user_id);
                 $statement->execute();
                 $result = $statement->fetchAll( PDO::FETCH_ASSOC );
